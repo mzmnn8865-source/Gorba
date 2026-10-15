@@ -6,305 +6,2331 @@
 <title>گربه‌رقصان</title>
 <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Harmattan:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--bg:#1d1612;--paper:#f1e4cc;--ink:#2b1d14;--hot:#ff6b3d;--mint:#7fd6b0;--wood:#3a2a1f;
- box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+/* ============================================================
+   متغیرهای رنگ و سیستم طراحی «کافهٔ چوبی/کاغذی»
+   ============================================================ */
+:root{
+  color-scheme:dark;
+  --bg:#1d1612; --paper:#f1e4cc; --ink:#2b1d14;
+  --hot:#ff6b3d; --mint:#7fd6b0; --wood:#3a2a1f;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px)
+}
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--bg);color:var(--paper);font-family:'Harmattan','Tahoma',sans-serif;font-size:19px}
-body{background:radial-gradient(120% 60% at 50% 0,#3b2417 0,var(--bg) 70%) fixed;min-height:100%}
-body::after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
- background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='.9' numOctaves='2'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>")}
+html,body{
+  margin:0;background:var(--bg);color:var(--paper);
+  font-family:'Harmattan','Tahoma',sans-serif;font-size:19px
+}
+body{
+  background:radial-gradient(120% 60% at 50% 0,#3b2417 0,var(--bg) 70%) fixed;
+  min-height:100%
+}
+/* نویز کاغذی روی کل صفحه */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.07;
+  mix-blend-mode:overlay;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='.9' numOctaves='2'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>")
+}
 main{max-width:760px;margin:0 auto;padding:14px 14px 40px}
-h1{font:400 clamp(34px,9vw,56px)/1 'Lalezar','Tahoma',sans-serif;margin:6px 4px 2px;color:var(--paper);transform:rotate(-1.2deg);text-shadow:3px 3px 0 var(--hot)}
+h1{
+  font:400 clamp(34px,9vw,56px)/1 'Lalezar','Tahoma',sans-serif;
+  margin:6px 4px 2px;color:var(--paper);
+  transform:rotate(-1.2deg);text-shadow:3px 3px 0 var(--hot)
+}
 .sub{margin:0 6px 12px;opacity:.7}
-.stage{position:relative;height:clamp(300px,50vh,480px);border-radius:22px 30px 20px 28px;overflow:hidden;border:3px solid #000;box-shadow:0 0 0 3px var(--wood),0 14px 30px #0009}
+
+/* ============================================================
+   صحنه
+   ============================================================ */
+.stage{
+  position:relative;height:clamp(320px,52vh,500px);
+  border-radius:22px 30px 20px 28px;overflow:hidden;
+  border:3px solid #000;
+  box-shadow:0 0 0 3px var(--wood),0 14px 30px #0009;
+  transition:transform .05s linear
+}
 .stage canvas{width:100%;height:100%;display:block}
-.badge{position:absolute;top:10px;left:10px;background:var(--paper);color:var(--ink);padding:2px 12px 4px;border-radius:12px 4px 12px 4px;font-weight:700;transform:rotate(-2deg);box-shadow:2px 2px 0 #0007}
-.deck{position:relative;margin-top:22px;padding:18px 16px 16px;background:linear-gradient(160deg,#4a3526,#2f2118);border-radius:26px 18px 28px 20px;box-shadow:inset 0 2px 0 #fff2,0 12px 28px #000a;border:2px solid #0008}
-.deck::before,.deck::after{content:"";position:absolute;width:74px;height:22px;background:#e8d9a8cc;top:-11px;transform:rotate(-5deg);right:22px;box-shadow:0 1px 3px #0005}
+.badge{
+  position:absolute;top:10px;left:10px;background:var(--paper);color:var(--ink);
+  padding:2px 12px 4px;border-radius:12px 4px 12px 4px;font-weight:700;
+  transform:rotate(-2deg);box-shadow:2px 2px 0 #0007
+}
+
+/* ============================================================
+   میز پلیر
+   ============================================================ */
+.deck{
+  position:relative;margin-top:22px;padding:18px 16px 16px;
+  background:linear-gradient(160deg,#4a3526,#2f2118);
+  border-radius:26px 18px 28px 20px;
+  box-shadow:inset 0 2px 0 #fff2,0 12px 28px #000a;
+  border:2px solid #0008
+}
+.deck::before,.deck::after{
+  content:"";position:absolute;width:74px;height:22px;
+  background:#e8d9a8cc;top:-11px;transform:rotate(-5deg);right:22px;
+  box-shadow:0 1px 3px #0005
+}
 .deck::after{left:26px;right:auto;transform:rotate(4deg)}
-.tape{background:var(--paper);color:var(--ink);border-radius:14px 10px 16px 10px;padding:10px 12px 12px;transform:rotate(.4deg);box-shadow:0 3px 0 #0006}
+.tape{
+  background:var(--paper);color:var(--ink);
+  border-radius:14px 10px 16px 10px;padding:10px 12px 12px;
+  transform:rotate(.4deg);box-shadow:0 3px 0 #0006
+}
 .label{border-bottom:2px dashed #2b1d1455;padding-bottom:4px;margin-bottom:8px}
-#title{font:400 26px/1.2 'Lalezar',sans-serif;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#title{
+  font:400 26px/1.2 'Lalezar',sans-serif;display:block;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
 #sub{opacity:.65;font-size:17px}
-.win{background:#1a120d;border-radius:40px;height:74px;display:flex;justify-content:space-around;align-items:center;padding:0 22px;box-shadow:inset 0 3px 8px #000}
+
+/* رکوردهای چرخان */
+.win{
+  background:#1a120d;border-radius:40px;height:74px;
+  display:flex;justify-content:space-around;align-items:center;padding:0 22px;
+  box-shadow:inset 0 3px 8px #000
+}
 .win svg{width:60px;height:60px}
+
 #vu{width:100%;height:46px;display:block;margin:12px 0 4px}
-.bar{display:flex;align-items:center;gap:10px;font-size:16px;direction:ltr}
-input[type=range]{-webkit-appearance:none;appearance:none;flex:1;height:8px;border-radius:6px;background:#0007;outline:0;direction:ltr}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--hot);border:3px solid var(--paper);box-shadow:0 2px 0 #000}
-input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--hot);border:3px solid var(--paper)}
-.btns{display:flex;align-items:center;justify-content:center;gap:14px;margin:12px 0;direction:ltr}
-.btn{width:54px;height:54px;border-radius:16px 12px 16px 12px;border:2px solid #000;background:#d9c7a4;color:var(--ink);display:grid;place-items:center;box-shadow:0 5px 0 #000;cursor:pointer;padding:0;transition:transform .06s,box-shadow .06s}
+
+/* ============================================================
+   تایم‌لاین کاغذی (بدون رقص نور - هم‌خانوادهٔ سایت)
+   ============================================================ */
+.timeline{
+  position:relative;height:34px;margin:10px 2px 6px;
+  background:linear-gradient(180deg,#2a1c12,#1a1109);
+  border-radius:8px;padding:6px 8px;
+  box-shadow:inset 0 2px 4px #000;
+  display:flex;align-items:center;gap:8px;
+  font-size:14px;direction:ltr
+}
+.timeline .t{
+  font-family:'Lalezar',sans-serif;font-size:15px;color:var(--paper);
+  opacity:.75;min-width:38px;text-align:center;
+  letter-spacing:.5px
+}
+.timeline .track{
+  position:relative;flex:1;height:8px;
+  background:#f1e4cc11;border-radius:2px;cursor:pointer;
+  border-top:1px solid #0008;
+  box-shadow:inset 0 1px 2px #000
+}
+/* پراگرس به شکل کاغذ جوهرخورده */
+.timeline .fill{
+  position:absolute;top:0;bottom:0;right:0;width:0;
+  background:
+    repeating-linear-gradient(90deg,#f1e4cc 0 2px,transparent 2px 5px),
+    var(--paper);
+  border-radius:2px;
+  box-shadow:0 0 0 1px #0007 inset
+}
+/* دستگیره به شکل سوزن گرامافون کوچک */
+.timeline .pin{
+  position:absolute;top:50%;right:0;width:12px;height:12px;
+  background:var(--paper);border:2px solid #000;
+  border-radius:50%;transform:translate(50%,-50%);
+  box-shadow:0 1px 0 #000
+}
+.timeline .track::before{
+  content:"";position:absolute;inset:2px 0;
+  background:repeating-linear-gradient(90deg,transparent 0 15px,#f1e4cc18 15px 16px)
+}
+
+/* ============================================================
+   کنترل‌ها
+   ============================================================ */
+.btns{
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  margin:12px 0;direction:ltr
+}
+.btn{
+  width:54px;height:54px;border-radius:16px 12px 16px 12px;
+  border:2px solid #000;background:#d9c7a4;color:var(--ink);
+  display:grid;place-items:center;box-shadow:0 5px 0 #000;
+  cursor:pointer;padding:0;transition:transform .06s,box-shadow .06s
+}
 .btn:active{transform:translateY(4px);box-shadow:0 1px 0 #000}
 .btn.big{width:72px;height:66px;background:var(--hot);color:#fff}
 .btn svg{width:26px;height:26px;fill:currentColor}
-.vol{width:90px;flex:none}
-.meters{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0 14px}
-.m{background:#0005;border-radius:12px 8px 12px 8px;padding:6px 8px;text-align:center;border:1px solid #fff1}
-.m b{display:block;font:400 22px 'Lalezar',sans-serif;color:var(--mint);white-space:nowrap}
+.vol{
+  -webkit-appearance:none;appearance:none;width:90px;flex:none;
+  height:8px;border-radius:6px;background:#0007;outline:0;direction:ltr
+}
+.vol::-webkit-slider-thumb{
+  -webkit-appearance:none;width:20px;height:20px;border-radius:50%;
+  background:var(--hot);border:3px solid var(--paper);box-shadow:0 2px 0 #000
+}
+.vol::-moz-range-thumb{
+  width:14px;height:14px;border-radius:50%;background:var(--hot);
+  border:3px solid var(--paper)
+}
+
+/* ============================================================
+   سنجه‌ها (بدون نمایش درصد راک)
+   ============================================================ */
+.meters{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0 14px
+}
+.m{
+  background:#0005;border-radius:12px 8px 12px 8px;padding:6px 8px;
+  text-align:center;border:1px solid #fff1
+}
+.m b{
+  display:block;font:400 22px 'Lalezar',sans-serif;color:var(--mint);
+  white-space:nowrap
+}
 .m span{font-size:15px;opacity:.65}
-.m i{display:block;height:5px;border-radius:3px;background:#fff2;margin-top:4px;overflow:hidden}.m i u{display:block;height:100%;width:0;background:var(--hot)}
-.drop{display:block;text-align:center;padding:14px;border:2px dashed #f1e4cc77;border-radius:16px;cursor:pointer;transform:rotate(-.5deg)}
+.m i{
+  display:block;height:5px;border-radius:3px;background:#fff2;
+  margin-top:4px;overflow:hidden
+}
+.m i u{display:block;height:100%;width:0;background:var(--hot)}
+
+/* ============================================================
+   انتخاب سبک / drop
+   ============================================================ */
+.stylebar{
+  display:flex;align-items:center;justify-content:space-between;
+  background:#0004;border-radius:12px 8px 12px 8px;padding:8px 12px;
+  margin-bottom:10px;border:1px solid #fff1
+}
+.stylebar .cur{
+  font-family:'Lalezar',sans-serif;color:var(--paper);font-size:20px;
+  display:flex;align-items:center;gap:8px
+}
+.stylebar .cur::before{
+  content:"";width:10px;height:10px;border-radius:50%;
+  background:var(--hot);box-shadow:0 0 0 2px #000
+}
+.stylebar button{
+  background:var(--paper);color:var(--ink);
+  border:2px solid #000;border-radius:8px 6px 8px 6px;
+  font-family:'Lalezar',sans-serif;font-size:17px;padding:4px 14px 6px;
+  cursor:pointer;box-shadow:0 3px 0 #000
+}
+.stylebar button:active{transform:translateY(2px);box-shadow:0 1px 0 #000}
+
+.drop{
+  display:block;text-align:center;padding:14px;
+  border:2px dashed #f1e4cc77;border-radius:16px;cursor:pointer;
+  transform:rotate(-.5deg)
+}
 .drop.on,.drop:hover{background:#ff6b3d22;border-color:var(--hot)}
 .drop input{display:none}
-#list{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:6px}
-#list li{padding:7px 12px;border-radius:10px;background:#0004;cursor:pointer;display:flex;justify-content:space-between;gap:8px}
+
+#list{
+  list-style:none;margin:12px 0 0;padding:0;display:grid;gap:6px
+}
+#list li{
+  padding:7px 12px;border-radius:10px;background:#0004;cursor:pointer;
+  display:flex;justify-content:space-between;gap:8px
+}
 #list li.cur{background:var(--paper);color:var(--ink);font-weight:700}
-#list li span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#list li span:first-child{
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap
+}
+
+/* ============================================================
+   مودال انتخاب سبک
+   ============================================================ */
+.modal{
+  position:fixed;inset:0;background:rgba(15,9,6,.85);
+  display:none;align-items:center;justify-content:center;
+  padding:20px;z-index:50;backdrop-filter:blur(4px)
+}
+.modal.on{display:flex}
+.modal-box{
+  background:linear-gradient(160deg,#4a3526,#2f2118);
+  border:3px solid #000;box-shadow:0 0 0 3px var(--wood),0 20px 60px #000;
+  border-radius:26px 18px 28px 20px;
+  padding:22px 20px 20px;max-width:640px;width:100%;
+  max-height:90vh;overflow:auto;position:relative
+}
+.modal-box h2{
+  font:400 30px 'Lalezar',sans-serif;margin:0 0 4px;color:var(--paper);
+  transform:rotate(-1deg);text-shadow:2px 2px 0 var(--hot)
+}
+.modal-box p{margin:0 0 18px;opacity:.75;font-size:16px}
+.style-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:12px
+}
+@media (min-width:520px){.style-grid{grid-template-columns:repeat(3,1fr)}}
+.style-card{
+  background:var(--paper);color:var(--ink);
+  border:2px solid #000;border-radius:14px 10px 16px 10px;
+  padding:12px 10px 14px;cursor:pointer;
+  text-align:center;box-shadow:0 4px 0 #000;
+  transition:transform .08s,box-shadow .08s;
+  position:relative
+}
+.style-card:hover{transform:translateY(-2px);box-shadow:0 6px 0 #000}
+.style-card:active{transform:translateY(3px);box-shadow:0 1px 0 #000}
+.style-card svg{width:56px;height:56px;display:block;margin:0 auto 4px}
+.style-card b{font:400 22px 'Lalezar',sans-serif;display:block}
+.style-card span{font-size:14px;opacity:.65}
+.style-card .swatch{
+  position:absolute;top:6px;left:6px;width:14px;height:14px;
+  border-radius:4px;border:2px solid #000
+}
 </style>
 </head>
 <body>
 <main>
-<h1>گربه‌رقصان</h1>
-<p class="sub">آهنگت رو بنداز تو؛ پنج تا گربه به سلیقهٔ خودشون می‌رقصن.</p>
-<section class="stage" id="stage"><canvas id="cv"></canvas><div class="badge" id="badge">منتظر موزیک…</div></section>
+  <h1>گربه‌رقصان</h1>
+  <p class="sub">آهنگت رو بنداز تو؛ پنج تا گربه به سلیقهٔ خودشون می‌رقصن و می‌نوازن.</p>
 
-<section class="deck">
- <div class="tape">
-  <div class="label"><span id="title">هنوز آهنگی نیست</span><span id="sub">یه فایل صوتی انتخاب کن</span></div>
-  <div class="win">
-   <svg viewBox="-30 -30 60 60"><g id="r1"><circle r="26" fill="#3a2a1f"/><circle r="9" fill="#f1e4cc"/><path id="sp1" d="M0-9V-24M8-5L21-12M8 5L21 12M0 9V24M-8 5L-21 12M-8-5L-21-12" stroke="#f1e4cc" stroke-width="3" stroke-linecap="round"/></g></svg>
-   <svg viewBox="-30 -30 60 60"><g id="r2"><circle r="26" fill="#3a2a1f"/><circle r="9" fill="#f1e4cc"/><path d="M0-9V-24M8-5L21-12M8 5L21 12M0 9V24M-8 5L-21 12M-8-5L-21-12" stroke="#f1e4cc" stroke-width="3" stroke-linecap="round"/></g></svg>
-  </div>
- </div>
- <canvas id="vu"></canvas>
- <div class="bar"><span id="tc">0:00</span><input type="range" id="seek" min="0" max="1000" value="0"><span id="td">0:00</span></div>
- <div class="btns">
-  <button class="btn" id="prev" aria-label="قبلی"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg></button>
-  <button class="btn big" id="play" aria-label="پخش"><svg viewBox="0 0 24 24" id="ic"><path d="M7 4v16l13-8z"/></svg></button>
-  <button class="btn" id="next" aria-label="بعدی"><svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 5l11 7L4 19z"/></svg></button>
-  <input class="vol" type="range" id="vol" min="0" max="100" value="85" aria-label="صدا">
- </div>
- <div class="meters">
-  <div class="m"><span>تمپو</span><b id="mb">—</b></div>
-  <div class="m"><span>حال‌وهوا</span><b id="mm">—</b></div>
-  <div class="m"><span>انرژی</span><b id="me">۰</b><i><u id="ue"></u></i></div>
-  <div class="m"><span>راک‌بودن</span><b id="mr">۰٪</b><i><u id="ur"></u></i></div>
- </div>
- <label class="drop" id="drop"><input type="file" id="file" accept="audio/*" multiple>🎵 آهنگ‌هات رو اینجا بنداز یا بزن تا انتخاب کنی</label>
- <ul id="list"></ul>
-</section>
+  <section class="stage" id="stage">
+    <canvas id="cv"></canvas>
+    <div class="badge" id="badge">منتظر موزیک…</div>
+  </section>
+
+  <section class="deck">
+    <div class="tape">
+      <div class="label">
+        <span id="title">هنوز آهنگی نیست</span>
+        <span id="sub">یه فایل صوتی انتخاب کن</span>
+      </div>
+      <div class="win">
+        <svg viewBox="-30 -30 60 60"><g id="r1">
+          <circle r="26" fill="#3a2a1f"/><circle r="9" fill="#f1e4cc"/>
+          <path d="M0-9V-24M8-5L21-12M8 5L21 12M0 9V24M-8 5L-21 12M-8-5L-21-12"
+                stroke="#f1e4cc" stroke-width="3" stroke-linecap="round"/>
+        </g></svg>
+        <svg viewBox="-30 -30 60 60"><g id="r2">
+          <circle r="26" fill="#3a2a1f"/><circle r="9" fill="#f1e4cc"/>
+          <path d="M0-9V-24M8-5L21-12M8 5L21 12M0 9V24M-8 5L-21 12M-8-5L-21-12"
+                stroke="#f1e4cc" stroke-width="3" stroke-linecap="round"/>
+        </g></svg>
+      </div>
+    </div>
+
+    <canvas id="vu"></canvas>
+
+    <!-- تایم‌لاین کاغذی هم‌خانوادهٔ سایت (بدون رقص نور) -->
+    <div class="timeline" id="tl">
+      <span class="t" id="tc">0:00</span>
+      <div class="track" id="track">
+        <div class="fill" id="fill"></div>
+        <div class="pin" id="pin"></div>
+      </div>
+      <span class="t" id="td">0:00</span>
+    </div>
+
+    <div class="btns">
+      <button class="btn" id="prev" aria-label="قبلی">
+        <svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg>
+      </button>
+      <button class="btn big" id="play" aria-label="پخش">
+        <svg viewBox="0 0 24 24" id="ic"><path d="M7 4v16l13-8z"/></svg>
+      </button>
+      <button class="btn" id="next" aria-label="بعدی">
+        <svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 5l11 7L4 19z"/></svg>
+      </button>
+      <input class="vol" type="range" id="vol" min="0" max="100" value="85" aria-label="صدا">
+    </div>
+
+    <!-- سنجه‌ها: بدون نمایش «راک‌بودن» برای کاربر -->
+    <div class="meters">
+      <div class="m"><span>تمپو</span><b id="mb">—</b></div>
+      <div class="m"><span>حال‌وهوا</span><b id="mm">—</b></div>
+      <div class="m"><span>انرژی</span><b id="me">۰</b><i><u id="ue"></u></i></div>
+    </div>
+
+    <div class="stylebar">
+      <div class="cur" id="styleName">سبک: راک</div>
+      <button id="styleBtn">تغییر سبک</button>
+    </div>
+
+    <label class="drop" id="drop">
+      <input type="file" id="file" accept="audio/*" multiple>
+      🎵 آهنگ‌هات رو اینجا بنداز یا بزن تا انتخاب کنی
+    </label>
+    <ul id="list"></ul>
+  </section>
 </main>
+
+<!-- ============================================================
+     مودال انتخاب سبک
+     ============================================================ -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <h2>سبک آهنگت چیه؟</h2>
+    <p>بر اساس انتخاب تو، لباس و ساز گربه‌ها عوض می‌شه.</p>
+    <div class="style-grid" id="styleGrid"></div>
+  </div>
+</div>
+
 <audio id="au" preload="auto"></audio>
+
 <script>
-const $=s=>document.querySelector(s),fa=n=>Math.round(n).toLocaleString('fa-IR');
-const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),wrap=a=>Math.atan2(Math.sin(a),Math.cos(a));
-const cv=$('#cv'),g=cv.getContext('2d'),vu=$('#vu'),vg=vu.getContext('2d'),au=$('#au');
-let W=0,H=0,D=1;
-function fit(){D=Math.min(devicePixelRatio||1,2);for(const c of[cv,vu]){c.width=c.clientWidth*D;c.height=c.clientHeight*D}W=cv.width/D;H=cv.height/D}
-addEventListener('resize',fit);fit();
+/* ============================================================
+   ۰. ابزارهای عمومی
+   ============================================================ */
+const $  = s => document.querySelector(s);
+const fa = n => Math.round(n).toLocaleString('fa-IR');
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const wrap  = a => Math.atan2(Math.sin(a), Math.cos(a));
+const lerp  = (a, b, t) => a + (b - a) * t;
+const rand  = (a, b) => a + Math.random() * (b - a);
 
-/* ---------- پنج گربه با شکل و رنگ کاملاً متفاوت ---------- */
-const CATS=[
- {n:'نارنجی',body:'#e8923a',belly:'#fbe2bd',dark:'#b8651f',w:.66,h:1,hr:.21,ear:'point',tail:'long',pat:'tabby',acc:'none',mult:1,off:0,soc:.9,sw:1,jump:1,bl:1.3},
- {n:'تاکسیدو',body:'#1d1d26',belly:'#f6f6f4',dark:'#000',w:.5,h:1.3,hr:.19,ear:'point',tail:'whip',pat:'tux',acc:'bow',mult:.5,off:1.2,soc:.5,sw:1.4,jump:.5,bl:.9},
- {n:'تاج‌دار',body:'#fdfbf8',belly:'#ffe9ee',dark:'#cfc6c0',w:.46,h:.82,hr:.24,ear:'point',tail:'curl',pat:'none',acc:'crown',mult:2,off:2.4,soc:.7,sw:.8,jump:1.2,bl:1.7},
- {n:'کلاه‌سبز',body:'#e9c8a0',belly:'#f9ecd8',dark:'#c49a6c',w:.62,h:.86,hr:.24,ear:'fold',tail:'stub',pat:'none',acc:'cap',mult:1,off:3.1,soc:.85,sw:.9,jump:.9,bl:1.1},
- {n:'خالدار',body:'#f3ece3',belly:'#fff',dark:'#6b4a38',w:.5,h:.74,hr:.25,ear:'point',tail:'long',pat:'calico',acc:'none',mult:.75,off:4.2,soc:.6,sw:1.1,jump:1.5,bl:1.5}
+/* ============================================================
+   ۱. موتور تحلیل صدا (دو مسیر: آنی + نرم)
+   ------------------------------------------------------------
+   - مسیر «آنی» برای onset، گیت سکوت، پالس
+   - مسیر «نرم» برای رنگ، حال‌وهوا، تمپو
+   - تشخیص «وکال» با باند ۳۰۰-۳۴۰۰ + قله‌های هارمونیک
+   - گیت سکوت پویا نسبت به میانگین ۳ ثانیه‌ی اخیر
+   ============================================================ */
+class AudioEngine {
+  constructor(el) {
+    this.el = el;
+    this.ctx = null;
+    this.analyser = null;
+    this.freq = null;
+    this.time = null;
+    this.prevFreq = null;
+
+    // آنی
+    this.rms = 0;
+    this.bass = 0;
+    this.mid = 0;
+    this.high = 0;
+    this.vocal = 0;       // احتمال وکال بودن
+    this.vocalRaw = 0;    // باند وکال خام
+    this.flux = 0;
+    this.silence = 1;     // ۱ = سکوت کامل
+
+    // نرم
+    this.sBass = 0;
+    this.sMid = 0;
+    this.sHigh = 0;
+    this.sEnergy = 0;
+    this.sVocal = 0;
+
+    // ضرب
+    this.bpm = 100;
+    this.hasBpm = false;
+    this.beat = 0;
+    this.pulse = 0;
+    this.onsets = [];
+    this.lastOnset = -10;
+    this.history = [];
+    this.connected = false;
+  }
+
+  connect() {
+    if (this.connected) return;
+    this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+    this.analyser = this.ctx.createAnalyser();
+    this.analyser.fftSize = 2048;
+    // smoothing پایین برای پاسخ سریع
+    this.analyser.smoothingTimeConstant = 0.15;
+    const src = this.ctx.createMediaElementSource(this.el);
+    src.connect(this.analyser);
+    this.analyser.connect(this.ctx.destination);
+    this.freq = new Uint8Array(this.analyser.frequencyBinCount);
+    this.time = new Float32Array(this.analyser.fftSize);
+    this.prevFreq = new Float32Array(this.freq.length);
+    this.connected = true;
+  }
+
+  async resume() {
+    if (this.ctx && this.ctx.state === 'suspended') await this.ctx.resume();
+  }
+
+  bandAvg(from, to) {
+    let s = 0;
+    for (let i = from; i < to; i++) s += this.freq[i];
+    return s / ((to - from) * 255);
+  }
+
+  /* تحلیل هر فریم */
+  update(dt, t, playing) {
+    /* اگر متصل نیست یا در حال پخش نیست → خاموشی سریع */
+    if (!this.connected || !playing) {
+      this.rms    *= 0.6;
+      this.bass   *= 0.6;
+      this.mid    *= 0.6;
+      this.high   *= 0.6;
+      this.vocal  *= 0.6;
+      this.flux   *= 0.6;
+      this.sBass  *= 0.85;
+      this.sMid   *= 0.85;
+      this.sHigh  *= 0.85;
+      this.sEnergy*= 0.88;
+      this.sVocal *= 0.85;
+      this.pulse  *= 0.82;
+      // سکوت با نرخ سریع بالا می‌ره
+      this.silence = Math.min(1, this.silence + dt * 6);
+      return;
+    }
+
+    this.analyser.getByteFrequencyData(this.freq);
+    this.analyser.getFloatTimeDomainData(this.time);
+
+    /* --- RMS --- */
+    let sum = 0;
+    for (let i = 0; i < this.time.length; i++) sum += this.time[i] * this.time[i];
+    const rms = Math.sqrt(sum / this.time.length);
+
+    /* --- باندها --- */
+    const bass = this.bandAvg(1, 8);
+    const mid  = this.bandAvg(8, 90);
+    const high = this.bandAvg(90, 400);
+
+    /* --- باند وکال: ۳۰۰ تا ۳۴۰۰ هرتز --- */
+    const binHz = this.ctx.sampleRate / this.analyser.fftSize;
+    const vFrom = Math.max(1, Math.floor(300 / binHz));
+    const vTo   = Math.min(this.freq.length - 1, Math.floor(3400 / binHz));
+    let vSum = 0, vCount = 0;
+    for (let i = vFrom; i < vTo; i++) { vSum += this.freq[i]; vCount++; }
+    const vocalRaw = vCount ? vSum / (vCount * 255) : 0;
+
+    /* --- flux --- */
+    let flux = 0;
+    for (let i = 1; i < 250; i++) {
+      const d = this.freq[i] / 255 - this.prevFreq[i];
+      if (d > 0) flux += d;
+    }
+    flux /= 250;
+    for (let i = 0; i < this.freq.length; i++)
+      this.prevFreq[i] = this.freq[i] / 255;
+
+    /* --- گیت سکوت پویا --- */
+    this.history.push(rms);
+    if (this.history.length > 90) this.history.shift();
+    const avgHist = this.history.reduce((a, b) => a + b, 0) / this.history.length;
+
+    // اگر RMS به‌شدت زیر میانگین یا در حد نویز پس‌زمینه است → سکوت
+    const silent =
+      rms < 0.012 ||
+      (avgHist > 0.02 && rms < avgHist * 0.32 && flux < 0.006);
+
+    /* --- تشخیص وکال ---
+       - vocalRaw بالا + mid معنی‌دار + نه سکوت
+       - فیلترگذاری روی bass شدید (کیک و بیس) تا وکال‌نمایی نکند */
+    const bassGate = clamp((mid * 0.9 + 0.02 - bass * 0.7) / 0.25);
+    const vocalPresence = clamp((vocalRaw - 0.04) / 0.22) * bassGate;
+
+    /* --- ذخیرهٔ آنی --- */
+    this.rms    = rms;
+    this.bass   = bass;
+    this.mid    = mid;
+    this.high   = high;
+    this.vocalRaw = vocalRaw;
+    this.vocal  = vocalPresence * (silent ? 0 : 1);
+    this.flux   = flux;
+    this.silence = silent
+      ? Math.min(1, this.silence + dt * 9)   // ورود سریع به سکوت
+      : Math.max(0, this.silence - dt * 14); // خروج سریع از سکوت
+
+    /* --- نرم‌سازی با نرخ‌های مختلف برای attack/release --- */
+    const attack  = 1 - Math.exp(-dt / 0.04);
+    const release = 1 - Math.exp(-dt / 0.22);
+    const sm = (cur, target) =>
+      cur + (target - cur) * (target > cur ? attack : release);
+
+    this.sBass  = sm(this.sBass,  bass);
+    this.sMid   = sm(this.sMid,   mid);
+    this.sHigh  = sm(this.sHigh,  high);
+    this.sVocal = sm(this.sVocal, this.vocal);
+
+    const energy = clamp((bass * 0.4 + mid * 0.4 + high * 0.2 - 0.12) / 0.5);
+    this.sEnergy = sm(this.sEnergy, energy * (1 - this.silence));
+
+    /* --- onset و پالس --- */
+    this.pulse *= Math.exp(-dt * 11);
+    if (!silent && flux > 0.010 && t - this.lastOnset > 0.20) {
+      if (bass > 0.30) {
+        const err = Math.round(this.beat) - this.beat;
+        this.beat += err * 0.35;
+      }
+      this.lastOnset = t;
+      this.onsets.push(t);
+      if (this.onsets.length > 64) this.onsets.shift();
+      this.pulse = clamp(0.4 + flux * 8);
+      this.estimateBpm();
+    }
+    this.beat += dt * this.bpm / 60;
+  }
+
+  /* تخمین BPM از فاصله‌ی onsetها */
+  estimateBpm() {
+    const on = this.onsets;
+    if (on.length < 8) return;
+    const hist = new Float32Array(60);
+    for (let i = 1; i < on.length; i++) {
+      for (let j = 1; j <= 3 && i - j >= 0; j++) {
+        const d = on[i] - on[i - j];
+        if (d < 0.18 || d > 2.5) continue;
+        let b = 60 / d;
+        while (b < 70) b *= 2;
+        while (b > 180) b /= 2;
+        const idx = Math.round((b - 70) / 2);
+        if (idx >= 0 && idx < 60) {
+          hist[idx] += 1 / j;
+          if (idx > 0)  hist[idx - 1] += 0.4 / j;
+          if (idx < 59) hist[idx + 1] += 0.4 / j;
+        }
+      }
+    }
+    let bi = 0;
+    for (let i = 1; i < 60; i++) if (hist[i] > hist[bi]) bi = i;
+    if (hist[bi] < 1.5) return;
+    const newBpm = 70 + bi * 2;
+    this.bpm += (newBpm - this.bpm) * 0.22;
+    this.hasBpm = true;
+  }
+
+  reset() {
+    this.onsets.length = 0;
+    this.history.length = 0;
+    this.hasBpm = false;
+    this.bpm = 100;
+    this.beat = 0;
+    this.silence = 1;
+    this.pulse = 0;
+    this.vocal = 0;
+    this.sVocal = 0;
+  }
+}
+
+/* ============================================================
+   ۲. سیستم سبک (لباس، ساز، پالت، افکت)
+   ============================================================ */
+const STYLES = {
+  rock: {
+    name: 'راک',
+    tagline: 'چرم، دیستورشن، شور',
+    accent: '#ff3a20',
+    swatch: '#151515',
+    palette: { bg1: [8, 4, 2], bg2: [22, 8, 4], accent: '#ff3a20' },
+    guitar: 'electric',
+    hasPiano: false,
+    hasAmp: true,
+    clothes: { type: 'leather', color: '#181818', accent: '#a0a0a0', accessory: 'studs' },
+    effects: { shake: 1.0, headbang: 1.0, particles: 'sparks' },
+    icon: `<svg viewBox="0 0 64 64">
+      <path d="M40 8l6 4-4 8-4-2 2-10z" fill="#c9c9c9"/>
+      <ellipse cx="28" cy="42" rx="14" ry="12" fill="#181818" stroke="#000" stroke-width="2"/>
+      <circle cx="28" cy="42" r="4" fill="#8a8a8a"/>
+      <line x1="38" y1="34" x2="46" y2="14" stroke="#8a8a8a" stroke-width="3"/>
+    </svg>`
+  },
+  pop: {
+    name: 'پاپ',
+    tagline: 'رنگ، شادی، پرش',
+    accent: '#ff5aa8',
+    swatch: '#ff7cb0',
+    palette: { bg1: [30, 14, 30], bg2: [50, 20, 45], accent: '#ff5aa8' },
+    guitar: 'acoustic',
+    hasPiano: true,
+    hasAmp: false,
+    clothes: { type: 'tshirt', color: '#ff7cb0', accent: '#fff', accessory: 'headband' },
+    effects: { shake: 0.4, headbang: 0.3, particles: 'confetti' },
+    icon: `<svg viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="20" fill="#ff7cb0" stroke="#000" stroke-width="2"/>
+      <path d="M20 28 Q32 18 44 28" stroke="#fff" stroke-width="2" fill="none"/>
+      <circle cx="26" cy="34" r="2" fill="#1c1410"/><circle cx="38" cy="34" r="2" fill="#1c1410"/>
+    </svg>`
+  },
+  classic: {
+    name: 'کلاسیک',
+    tagline: 'وقار، ساز چوبی',
+    accent: '#c9a961',
+    swatch: '#2a1d12',
+    palette: { bg1: [20, 14, 8], bg2: [36, 26, 16], accent: '#c9a961' },
+    guitar: 'classical',
+    hasPiano: true,
+    hasAmp: false,
+    clothes: { type: 'tuxedo', color: '#1c1c1c', accent: '#fff', accessory: 'bowtie' },
+    effects: { shake: 0.12, headbang: 0.1, particles: 'notes' },
+    icon: `<svg viewBox="0 0 64 64">
+      <path d="M22 14l6 4v10l-4 2-2-16z" fill="#8a6a30"/>
+      <ellipse cx="32" cy="42" rx="12" ry="11" fill="#c9a961" stroke="#000" stroke-width="2"/>
+      <circle cx="32" cy="42" r="3" fill="#4a3010"/>
+    </svg>`
+  },
+  jazz: {
+    name: 'جاز',
+    tagline: 'دود، کلاه، شب',
+    accent: '#ffb04a',
+    swatch: '#2a2438',
+    palette: { bg1: [10, 10, 18], bg2: [22, 18, 32], accent: '#ffb04a' },
+    guitar: 'jazz',
+    hasPiano: true,
+    hasAmp: false,
+    clothes: { type: 'suit', color: '#2a2438', accent: '#c9a961', accessory: 'fedora' },
+    effects: { shake: 0.3, headbang: 0.3, particles: 'smoke' },
+    icon: `<svg viewBox="0 0 64 64">
+      <path d="M14 30h36v4H14z" fill="#2a2438"/>
+      <path d="M20 22h24v8H20z" fill="#3a3248"/>
+      <ellipse cx="32" cy="44" rx="10" ry="9" fill="#ffb04a" stroke="#000" stroke-width="2"/>
+    </svg>`
+  },
+  electronic: {
+    name: 'الکترونیک',
+    tagline: 'نئون، پالس، بیت',
+    accent: '#20e0ff',
+    swatch: '#0a0520',
+    palette: { bg1: [6, 8, 22], bg2: [10, 4, 30], accent: '#20e0ff' },
+    guitar: 'synth',
+    hasPiano: false,
+    hasAmp: false,
+    clothes: { type: 'neon', color: '#0a1030', accent: '#20e0ff', accessory: 'headset' },
+    effects: { shake: 0.6, headbang: 0.5, particles: 'neon' },
+    icon: `<svg viewBox="0 0 64 64">
+      <rect x="10" y="20" width="44" height="24" rx="3" fill="#0a1030" stroke="#20e0ff" stroke-width="2"/>
+      <path d="M18 32 L24 24 L28 40 L34 22 L38 42 L44 30 L48 34" stroke="#20e0ff" stroke-width="2" fill="none"/>
+    </svg>`
+  },
+  hiphop: {
+    name: 'هیپ‌هاپ',
+    tagline: 'گشاد، طلایی، بیس',
+    accent: '#ffcc20',
+    swatch: '#202020',
+    palette: { bg1: [22, 18, 14], bg2: [36, 24, 10], accent: '#ffcc20' },
+    guitar: null,
+    hasPiano: false,
+    hasAmp: false,
+    clothes: { type: 'hoodie', color: '#202020', accent: '#ffcc20', accessory: 'chain' },
+    effects: { shake: 0.5, headbang: 0.6, particles: 'gold' },
+    icon: `<svg viewBox="0 0 64 64">
+      <circle cx="32" cy="30" r="14" fill="#202020" stroke="#ffcc20" stroke-width="2"/>
+      <circle cx="32" cy="30" r="4" fill="#ffcc20"/>
+      <path d="M20 46h24" stroke="#ffcc20" stroke-width="3"/>
+    </svg>`
+  }
+};
+
+/* ============================================================
+   ۳. ذرات افکت (جرقه، کانفتی، نُت، دود، نئون، طلا)
+   ============================================================ */
+class Particles {
+  constructor() {
+    this.items = [];
+  }
+  spawn(type, x, y, hue) {
+    const conf = {
+      sparks:   { n: 6, life: [.3,.6], vx: 3,   vy: -4, g: 12, size: [1,2],  color: () => `hsl(${20 + Math.random()*30} 95% 60%)` },
+      confetti: { n: 8, life: [.8,1.4], vx: 4,  vy: -5, g: 10, size: [2,4],  color: () => `hsl(${Math.random()*360} 80% 65%)` },
+      notes:    { n: 4, life: [.9,1.5], vx: 2,  vy: -3, g: 2,  size: [8,12], color: () => `hsl(${hue||40} 70% 75%)`, glyph: true },
+      smoke:    { n: 4, life: [1.2,2], vx: 2,   vy: -1.5, g: 0, size: [4,8],color: () => `hsla(30 40% 70% / .5)` },
+      neon:     { n: 6, life: [.5,.9], vx: 5,   vy: -2, g: 6,  size: [1.5,3],color: () => `hsl(${190 + Math.random()*40} 95% 65%)` },
+      gold:     { n: 5, life: [.6,1],  vx: 3,   vy: -3, g: 8,  size: [2,3],  color: () => `hsl(45 95% 60%)` },
+    }[type] || null;
+    if (!conf) return;
+    for (let i = 0; i < conf.n; i++) {
+      this.items.push({
+        x, y,
+        vx: rand(-conf.vx, conf.vx),
+        vy: rand(conf.vy*0.5, conf.vy*1.2),
+        g: conf.g,
+        life: rand(conf.life[0], conf.life[1]),
+        maxLife: conf.life[1],
+        size: rand(conf.size[0], conf.size[1]),
+        color: conf.color(),
+        glyph: !!conf.glyph,
+      });
+    }
+    if (this.items.length > 400) this.items.splice(0, this.items.length - 400);
+  }
+  update(dt) {
+    for (let i = this.items.length - 1; i >= 0; i--) {
+      const p = this.items[i];
+      p.life -= dt;
+      if (p.life <= 0) { this.items.splice(i, 1); continue; }
+      p.vy += p.g * dt;
+      p.x += p.vx * dt;
+      p.y += p.vy * dt;
+    }
+  }
+  draw(g) {
+    for (const p of this.items) {
+      const a = clamp(p.life / p.maxLife);
+      if (p.glyph) {
+        g.fillStyle = p.color;
+        g.globalAlpha = a;
+        g.font = `${p.size * 2}px serif`;
+        g.fillText('♪', p.x, p.y);
+        g.globalAlpha = 1;
+      } else {
+        g.fillStyle = p.color;
+        g.globalAlpha = a;
+        g.beginPath();
+        g.arc(p.x, p.y, p.size, 0, 7);
+        g.fill();
+        g.globalAlpha = 1;
+      }
+    }
+  }
+}
+
+/* ============================================================
+   ۴. گربه‌ها
+   ------------------------------------------------------------
+   هر گربه:
+     - تعریف اختصاصی (نقش، رنگ، اسکلت)
+     - ساز تخصصی (گیتار / درام / میکروفون / پیانو / بیس)
+     - لباس بر اساس سبک انتخابی کاربر
+   ============================================================ */
+const CAT_DEFS = [
+  {
+    key: 'orange', role: 'guitar', roleName: 'گیتار',
+    colors: { body: '#e8923a', belly: '#fbe2bd', dark: '#b8651f' },
+    cfg: { bodyW: 0.66, bodyH: 1.05, headR: 0.24, legLen: 0.28,
+           earType: 'point', tailType: 'long', pattern: 'tabby' }
+  },
+  {
+    key: 'tux', role: 'drums', roleName: 'درام',
+    colors: { body: '#1d1d26', belly: '#f6f6f4', dark: '#000' },
+    cfg: { bodyW: 0.58, bodyH: 1.15, headR: 0.21, legLen: 0.28,
+           earType: 'point', tailType: 'whip', pattern: 'tux' }
+  },
+  {
+    key: 'crown', role: 'vocal', roleName: 'خواننده',
+    colors: { body: '#fdfbf8', belly: '#ffe9ee', dark: '#cfc6c0' },
+    cfg: { bodyW: 0.5, bodyH: 0.9, headR: 0.27, legLen: 0.28,
+           earType: 'point', tailType: 'curl', pattern: 'none' }
+  },
+  {
+    key: 'mint', role: 'keys', roleName: 'کیبورد',
+    colors: { body: '#e9c8a0', belly: '#f9ecd8', dark: '#c49a6c' },
+    cfg: { bodyW: 0.6, bodyH: 0.92, headR: 0.25, legLen: 0.28,
+           earType: 'fold', tailType: 'stub', pattern: 'none' }
+  },
+  {
+    key: 'calico', role: 'bass', roleName: 'بیس',
+    colors: { body: '#f3ece3', belly: '#fff', dark: '#6b4a38' },
+    cfg: { bodyW: 0.54, bodyH: 0.82, headR: 0.26, legLen: 0.28,
+           earType: 'point', tailType: 'long', pattern: 'calico' }
+  },
 ];
-CATS.forEach((k,i)=>{k.id=i;k.own=i*1.7;k.ph=0;k.amp=.2;k.frozen=0;k.drop=0});
 
-function drawCat(k,t,S,slump,asleep){
- const p=k.ph,s=Math.sin,e=k.amp,Hh=k.h,Ww=k.w;
- const bob=Math.abs(s(p))*e*.11*k.jump;
- g.save();g.scale(S,S);g.lineCap='round';g.lineJoin='round';
- g.translate(0,-bob);g.rotate(s(p+.4)*.1*e*k.sw);
- const col=k.body,L=(w,c)=>{g.lineWidth=w;g.strokeStyle=c};
- // tail
- g.beginPath();const tw=s(p*1.3+1)*.2*(.4+e);
- if(k.tail==='long'){g.moveTo(Ww*.3,-Hh*.25);g.bezierCurveTo(Ww*.9,-Hh*.2,Ww*.8+tw,-Hh*.75,Ww*.5+tw,-Hh*.85)}
- else if(k.tail==='whip'){g.moveTo(Ww*.2,-Hh*.2);g.bezierCurveTo(Ww*.8,-.02,Ww*1.1+tw,-Hh*.3,Ww*1.2+tw*2,-Hh*.1)}
- else if(k.tail==='curl'){g.moveTo(Ww*.25,-Hh*.2);g.bezierCurveTo(Ww*.9,-Hh*.1,Ww*.9,-Hh*.6+tw,Ww*.55,-Hh*.5)}
- else{g.moveTo(Ww*.3,-Hh*.2);g.lineTo(Ww*.46+tw*.3,-Hh*.24)}
- L(k.tail==='stub'?.13:.09,col);g.stroke();
- if(k.pat==='tabby'){L(.09,k.dark);g.setLineDash([.03,.07]);g.stroke();g.setLineDash([])}
- // legs
- for(let i=0;i<2;i++){const x=(i?1:-1)*Ww*.17,lift=Math.max(0,s(p+(i?Math.PI:0)))*e*.09;
-  L(.13,col);g.beginPath();g.moveTo(x,-Hh*.28);g.lineTo(x,-.05-lift);g.stroke();
-  g.fillStyle=k.pat==='tux'?'#f6f6f4':k.belly;g.beginPath();g.ellipse(x,-.035-lift,.085,.055,0,0,7);g.fill()}
- // body
- g.fillStyle=col;g.beginPath();g.ellipse(0,-Hh*.42,Ww*.5,Hh*.27,0,0,7);g.fill();
- g.fillStyle=k.belly;g.beginPath();g.ellipse(0,-Hh*.4,Ww*.28,Hh*.2,0,0,7);g.fill();
- if(k.pat==='tabby'){L(.035,k.dark);for(let i=-1;i<=1;i++){g.beginPath();g.moveTo(-Ww*.5+.02,-Hh*.5+i*.1);g.quadraticCurveTo(-Ww*.38,-Hh*.46+i*.1,-Ww*.3,-Hh*.5+i*.1);g.stroke()}}
- if(k.pat==='calico'){g.fillStyle=k.dark;g.beginPath();g.ellipse(-Ww*.25,-Hh*.55,.1,.09,0,0,7);g.fill();g.fillStyle='#d98e4a';g.beginPath();g.ellipse(Ww*.28,-Hh*.35,.09,.08,0,0,7);g.fill()}
- if(k.acc==='dress'){}
- // arms
- for(let i=0;i<2;i++){const sd=i?1:-1,a=.5+(.5+.5*s(p*2+i*1.9))*1.9*e*(1-slump*.5);
-  const sx=sd*Ww*.42,sy=-Hh*.6,ex=sx+sd*s(a)*.3,ey=sy+Math.cos(a)*.3*-1*-1;
-  L(.1,col);g.beginPath();g.moveTo(sx,sy);g.lineTo(ex,ey);g.stroke();
-  g.fillStyle=k.pat==='tux'?'#f6f6f4':k.belly;g.beginPath();g.arc(ex,ey,.06,0,7);g.fill()}
- if(k.acc==='bow'){g.fillStyle='#e0364f';const y=-Hh*.69;g.beginPath();g.moveTo(0,y);g.lineTo(-.1,y-.06);g.lineTo(-.1,y+.06);g.closePath();g.moveTo(0,y);g.lineTo(.1,y-.06);g.lineTo(.1,y+.06);g.closePath();g.fill()}
- // head
- g.save();g.translate(0,-Hh*.8);g.rotate(s(p+.5)*.18*e+slump*.25*(asleep?1.5:1));
- const r=k.hr;
- // ears
- g.fillStyle=col;
- for(let i=-1;i<=1;i+=2){g.beginPath();
-  if(k.ear==='point'){g.moveTo(i*r*.35,-r*.8);g.lineTo(i*r*1.05,-r*1.55+s(p*2+i)*.01);g.lineTo(i*r*.95,-r*.2)}
-  else{g.ellipse(i*r*.85,-r*.55,r*.3,r*.22,i*.6,0,7)}
-  g.closePath();g.fill();
-  if(k.ear==='point'){g.fillStyle='#f2a3a8';g.beginPath();g.moveTo(i*r*.5,-r*.8);g.lineTo(i*r*.9,-r*1.3);g.lineTo(i*r*.85,-r*.4);g.fill();g.fillStyle=col}}
- g.beginPath();g.ellipse(0,0,r*1.12,r,0,0,7);g.fill();
- if(k.pat==='tux'){g.fillStyle='#f6f6f4';g.beginPath();g.ellipse(0,r*.4,r*.55,r*.5,0,0,7);g.fill();g.beginPath();g.moveTo(0,-r);g.lineTo(-r*.12,r*.1);g.lineTo(r*.12,r*.1);g.fill()}
- if(k.pat==='tabby'){L(.025,k.dark);for(const x of[-.05,0,.05]){g.beginPath();g.moveTo(x,-r*.95);g.lineTo(x,-r*.55);g.stroke()}}
- if(k.pat==='calico'){g.fillStyle=k.dark;g.beginPath();g.ellipse(-r*.55,-r*.35,r*.45,r*.4,0,0,7);g.fill();g.fillStyle='#d98e4a';g.beginPath();g.ellipse(r*.6,-r*.55,r*.3,r*.25,0,0,7);g.fill()}
- // eyes
- const blink=((t*k.bl)%4)>3.85,half=slump>.4||asleep;
- g.fillStyle=k.pat==='tux'?'#9be15d':'#1c1410';
- for(let i=-1;i<=1;i+=2){const x=i*r*.42;
-  if(blink||asleep){L(.02,'#1c1410');g.beginPath();g.arc(x,-r*.05,r*.15,.2,Math.PI-.2);g.stroke()}
-  else{g.beginPath();g.ellipse(x,-r*.05,r*.15,r*(half?.07:.19),0,0,7);g.fill();g.fillStyle='#fff';g.beginPath();g.arc(x+.012,-r*.1,r*.05,0,7);g.fill();g.fillStyle=k.pat==='tux'?'#9be15d':'#1c1410'}}
- g.fillStyle='#f27c8c';g.beginPath();g.moveTo(-.025,r*.2);g.lineTo(.025,r*.2);g.lineTo(0,r*.28);g.fill();
- if(!asleep&&e>.55&&s(p*2)>.2){g.fillStyle='#8a2438';g.beginPath();g.ellipse(0,r*.45,r*.2,r*.14*Math.min(1,e),0,0,7);g.fill()}
- else{L(.018,'#1c1410');g.beginPath();g.arc(-r*.12,r*.3,r*.13,0,Math.PI);g.arc(r*.12,r*.3,r*.13,0,Math.PI);g.stroke()}
- L(.012,'#fff9');for(let i=-1;i<=1;i+=2)for(let j=-1;j<=1;j++){g.beginPath();g.moveTo(i*r*.6,r*.25+j*.02);g.lineTo(i*r*1.3,r*.2+j*.07);g.stroke()}
- // accessories
- if(k.acc==='crown'){g.fillStyle='#ffd24a';g.strokeStyle='#b88a10';g.lineWidth=.012;g.beginPath();g.moveTo(-r*.5,-r*.9);g.lineTo(-r*.5,-r*1.35);g.lineTo(-r*.25,-r*1.1);g.lineTo(0,-r*1.5);g.lineTo(r*.25,-r*1.1);g.lineTo(r*.5,-r*1.35);g.lineTo(r*.5,-r*.9);g.closePath();g.fill();g.stroke()}
- if(k.acc==='cap'){g.fillStyle='#2fae5b';g.beginPath();g.ellipse(0,-r*.72,r*.95,r*.55,0,Math.PI,0);g.fill();g.fillStyle='#fff';g.fillRect(-r*.3,-r*1.15,r*.6,r*.18);g.fillStyle='#1f8a45';g.beginPath();g.ellipse(r*.4,-r*.72,r*.7,r*.09,0,0,7);g.fill()}
- g.restore();
- g.restore();
+class Cat {
+  constructor(def, index) {
+    this.def = def;
+    this.cfg = def.cfg;
+    this.colors = def.colors;
+    this.role = def.role;
+    this.index = index;
+
+    // مکان و مقیاس (هر فریم ست می‌شود)
+    this.x = 0; this.y = 0; this.scale = 1;
+
+    // فاز حرکتی
+    this.phase = 0;
+    this.speed = 1;
+    this.mult = 1;              // ضریب تمپو (خواننده ۲x، درامر ۰.۵x و...)
+    this.offset = 0;            // اختلاف فاز
+
+    // آنی‌ها
+    this.energy = 0.15;
+    this.jump = 0;
+    this.jumpV = 0;
+    this.lean = 0;
+    this.headTilt = 0;
+    this.headNod = 0;
+    this.squash = 1;
+    this.frozen = 0;
+
+    // دست‌ها و پاها
+    this.armL = -0.6;  // شانه چپ
+    this.armR = 0.6;   // شانه راست
+    this.elbowL = 0.5;
+    this.elbowR = -0.5;
+    this.footL = 0;
+    this.footR = 0;
+
+    // دنباله
+    this.tailSegs = [0.2, 0.3, 0.4];
+
+    // حالت صورت
+    this.mouthOpen = 0;
+    this.eyeShut = 0;
+    this.earL = 0;
+    this.earR = 0;
+    this.blinkT = rand(0, 4);
+
+    // نقشه‌ی زمانی
+    this.roleTime = 0;
+    this.strumDir = 1;
+    this.strumCycle = 0;
+    this.hitL = 0;
+    this.hitR = 0;
+    this.keyIdx = 0;
+  }
+
+  /* ------- به‌روزرسانی حالت گربه بر اساس صدا و سبک ------- */
+  update(dt, t, A, style, playing) {
+    const slumped = A.silence > 0.55;
+    const asleep = !playing || A.silence > 0.75;
+
+    /* فاز مستقل گربه */
+    const bpmFactor = A.hasBpm ? (A.bpm / 60) : 1.6;
+    const sp = (playing && !asleep) ? 1 : 0.3;
+    this.phase += dt * Math.PI * 2 * bpmFactor * this.mult * sp * 0.5;
+
+    /* قفل ضرب: هر چند وقت یک‌بار فاز به ضرب نزدیک می‌شود */
+    if (playing && !asleep && A.pulse > 0.6) {
+      const lock = A.beat * Math.PI * this.mult;
+      const k = 0.08 * this.speed;
+      this.phase = lerp(this.phase, lock + this.offset, k);
+    }
+
+    /* انرژی هدف */
+    let targetEnergy = asleep
+      ? 0.03
+      : clamp(0.25 + A.sEnergy * 1.05) * (1 - A.silence * 0.5);
+    if (this.frozen > 0) { targetEnergy *= 0.2; this.frozen -= dt; }
+    else if (Math.random() < dt * 0.15 * (1 - A.sEnergy))
+      this.frozen = rand(0.15, 0.5);
+
+    const atk = targetEnergy > this.energy ? 8 : 3;
+    this.energy += (targetEnergy - this.energy) * clamp(dt * atk);
+
+    /* پرش: روی onsetهای قوی */
+    if (playing && !asleep && A.pulse > 0.55 && A.bass > 0.35 && this.jump <= 0.01) {
+      if (Math.random() < 0.25 + A.pulse * 0.6) {
+        this.jumpV = -(0.25 + this.energy * 0.4 + A.pulse * 0.3) * (0.5 + this.speed * 0.7);
+      }
+    }
+    // فیزیک پرش (فقط برای گربه‌های غیردرامر)
+    if (this.role !== 'drums') {
+      this.jumpV += 4.2 * dt;              // گرانش
+      this.jump  += this.jumpV * dt;
+      if (this.jump >= 0) { this.jump = 0; this.jumpV = 0; }
+    } else {
+      this.jump = Math.max(0, this.jump - dt * 3);
+    }
+
+    /* اسکواش/کشش */
+    const targetSq = this.jump < -0.02 ? 1.1 : (A.pulse > 0.6 ? 0.92 : 1);
+    this.squash += (targetSq - this.squash) * clamp(dt * 12);
+
+    /* تکیه و کج شدن */
+    const leanTarget = asleep
+      ? 0.25
+      : (this.role === 'drums' ? 0.08
+       : this.role === 'keys'  ? 0.15
+       : 0.0) + Math.sin(this.phase * 0.5) * 0.06 * this.energy;
+    this.lean += (leanTarget - this.lean) * clamp(dt * 4);
+
+    /* نوسان سر */
+    this.headNod += (
+      (asleep ? 0.25 : Math.sin(this.phase * 1.2) * 0.12 * this.energy)
+      - this.headNod
+    ) * clamp(dt * 8);
+
+    const headTiltT = asleep ? 0.35 : Math.sin(this.phase * 0.35 + 1) * 0.12 * this.energy;
+    this.headTilt += (headTiltT - this.headTilt) * clamp(dt * 4);
+
+    /* دنباله */
+    for (let i = 0; i < 3; i++) {
+      const s = Math.sin(this.phase * 0.6 + i * 0.7 + t * 0.5) * (0.25 + this.energy * 0.6);
+      this.tailSegs[i] += (s - this.tailSegs[i]) * clamp(dt * (3 - i * 0.6));
+    }
+
+    /* دست‌ها و پاها بر اساس نقش */
+    this.updateRole(dt, t, A, style, asleep);
+
+    /* چهره */
+    if (this.role === 'vocal') {
+      // لب خواننده از A.vocal پیروی می‌کند (نه از انرژی)
+      const env = A.vocal > 0.15 ? clamp(A.vocal * 1.6 + A.rms * 1.5) : 0;
+      this.mouthOpen += (env - this.mouthOpen) * clamp(dt * (env > this.mouthOpen ? 20 : 14));
+    } else {
+      this.mouthOpen += (0 - this.mouthOpen) * clamp(dt * 6);
+    }
+    this.eyeShut += ((asleep ? 1 : 0) - this.eyeShut) * clamp(dt * 3);
+    // پلک زدن
+    this.blinkT += dt;
+    if (this.blinkT > rand(2.5, 4.5)) { this.blinkT = 0; }
+    this.earL += (Math.sin(t * 2.2 + this.index) * 0.1 - this.earL) * clamp(dt * 2);
+    this.earR += (Math.sin(t * 2.0 + this.index + 1) * 0.1 - this.earR) * clamp(dt * 2);
+  }
+
+  /* رفتار اختصاصی هر نقش */
+  updateRole(dt, t, A, style, asleep) {
+    const e = this.energy;
+    const p = this.phase;
+
+    switch (this.role) {
+      case 'guitar': {
+        // دست چپ روی فرت، دست راست می‌زند (یا اسکن)
+        const strumRate = 1 + A.sEnergy * 2;
+        this.strumCycle += dt * strumRate * (A.hasBpm ? A.bpm / 60 : 1.5);
+        const strumPhase = Math.sin(this.strumCycle * Math.PI * 2);
+        // چپ: بالا روی فرت
+        this.armL = -1.4 + Math.sin(p * 0.5) * 0.15 * e;
+        this.elbowL = 0.9 + Math.sin(p * 0.7) * 0.1;
+        // راست: نوازش بالا-پایین
+        this.armR = 0.3 + strumPhase * 0.35 * (0.5 + e);
+        this.elbowR = -0.6 + strumPhase * 0.2;
+        break;
+      }
+      case 'drums': {
+        // دو دست به‌تناوب روی کیت
+        const hitRate = 1 + A.sEnergy * 3;
+        this.hitL += dt * hitRate * 2;
+        this.hitR += dt * hitRate * 2 + 0.5;
+        const sl = Math.sin(this.hitL * Math.PI * 2);
+        const sr = Math.sin(this.hitR * Math.PI * 2);
+        this.armL = -0.9 + sl * 0.5;
+        this.elbowL = 0.9 + Math.abs(sl) * 0.3;
+        this.armR = 0.9 - sr * 0.5;
+        this.elbowR = -0.9 - Math.abs(sr) * 0.3;
+        break;
+      }
+      case 'vocal': {
+        // دست آزاد به سمت بالا، دست دیگر میکروفون
+        this.armL = -1.6 - Math.sin(p * 0.5) * 0.25 * e;     // میکروفون به دهن
+        this.elbowL = 1.15;
+        this.armR = 0.6 + Math.sin(p * 0.4 + 0.5) * 0.4 * e; // دست آزاد
+        this.elbowR = -0.7;
+        break;
+      }
+      case 'keys': {
+        // دو دست روی کیبورد، انگشت‌ها بالا-پایین
+        const kRate = 1.2 + A.sEnergy * 2;
+        this.keyIdx += dt * kRate;
+        this.armL = -1.1 + Math.sin(this.keyIdx * 4) * 0.12 * e;
+        this.elbowL = 0.95 + Math.sin(this.keyIdx * 4 + 1) * 0.1;
+        this.armR = 1.1 - Math.sin(this.keyIdx * 4 + 1.7) * 0.12 * e;
+        this.elbowR = -0.95 - Math.sin(this.keyIdx * 4 + 2) * 0.1;
+        break;
+      }
+      case 'bass': {
+        // شبیه گیتار ولی آرام‌تر
+        const strumRate = 1 + A.sEnergy * 1.2;
+        this.strumCycle += dt * strumRate * (A.hasBpm ? A.bpm / 60 : 1.2);
+        const ph = Math.sin(this.strumCycle * Math.PI * 2);
+        this.armL = -1.3 + Math.sin(p * 0.4) * 0.1;
+        this.elbowL = 0.85;
+        this.armR = 0.5 + ph * 0.25 * (0.5 + e);
+        this.elbowR = -0.7 + ph * 0.15;
+        break;
+      }
+    }
+    if (asleep) {
+      this.armL = -0.4; this.elbowL = 0.4;
+      this.armR = 0.4;  this.elbowR = -0.4;
+    }
+  }
+
+  /* ============================================================
+     رسم گربه (اسکلت به‌هم‌پیوسته - هیچ عضوی جدا نمی‌شود)
+     تمام اندام‌ها از هیپ و شانه محاسبه می‌شوند و به هم چسبیده‌اند
+     ============================================================ */
+  draw(g, style, t) {
+    const c = this.cfg;
+    const col = this.colors;
+    const S = this.scale;
+    const legLen = c.legLen;
+    const bodyH = c.bodyH;
+    const bodyW = c.bodyW;
+    const headR = c.headR;
+
+    /* موقعیت پای گربه روی زمین */
+    g.save();
+    g.translate(this.x, this.y);
+    g.scale(S, S);
+
+    /* اسکواش عمودی حول نقطه‌ی زمین */
+    const sq = this.squash;
+    g.scale(1 / sq, sq);
+
+    /* سایه */
+    const shadowScale = 1 + this.jump * 0.6;
+    g.fillStyle = 'rgba(0,0,0,0.4)';
+    g.beginPath();
+    g.ellipse(0, 0, bodyW * 0.62 * shadowScale, 0.055 * shadowScale, 0, 0, 7);
+    g.fill();
+
+    /* هیپ (نقطه‌ی اتصال همه چیز) */
+    const jumpY = -this.jump;
+    const hipY = -legLen - jumpY;
+    const hipX = 0;
+
+    /* ---------- پاها ---------- */
+    drawLeg(g, col, hipX - bodyW * 0.28, hipY, 0, 0, c);
+    drawLeg(g, col, hipX + bodyW * 0.28, hipY, 0, 0, c);
+
+    /* ---------- دنباله (از هیپ به عقب) ---------- */
+    drawTail(g, col, c, this.tailSegs, hipX + bodyW * 0.3, hipY - bodyH * 0.05);
+
+    /* ---------- بدن (چرخش کل بالا‌تنه حول هیپ) ---------- */
+    g.save();
+    g.translate(hipX, hipY);
+    g.rotate(this.lean + this.headNod * 0.1);
+    g.translate(0, -bodyH * 0.42);
+
+    /* شکم */
+    g.fillStyle = col.body;
+    g.beginPath();
+    g.ellipse(0, 0, bodyW * 0.5, bodyH * 0.48, 0, 0, 7);
+    g.fill();
+    g.fillStyle = col.belly;
+    g.beginPath();
+    g.ellipse(0, bodyH * 0.1, bodyW * 0.28, bodyH * 0.36, 0, 0, 7);
+    g.fill();
+
+    /* الگو */
+    drawPattern(g, this, col, bodyW, bodyH);
+
+    /* لباس (قبل از دست‌ها، پشت آن‌ها) */
+    drawClothes(g, this, style, bodyW, bodyH);
+
+    /* ---------- دست‌ها (از شانه‌ها روی بدنه) ---------- */
+    const shLX = -bodyW * 0.42;
+    const shRX = bodyW * 0.42;
+    const shY  = -bodyH * 0.25;
+
+    const armL = solveArm(shLX, shY, this.armL, this.elbowL, 0.34, 0.30);
+    const armR = solveArm(shRX, shY, this.armR, this.elbowR, 0.34, 0.30);
+
+    // دست پشتی (چپ = به سمت دور تصویر)
+    drawArm(g, col, armL);
+    // ساز در جلوی سینه
+    drawInstrument(g, this, style, armL, armR, bodyW, bodyH);
+    // دست جلو (راست)
+    drawArm(g, col, armR);
+
+    /* ---------- سر (متصل به بالای بدن) ---------- */
+    g.save();
+    g.translate(0, -bodyH * 0.6);
+    g.rotate(this.headTilt);
+    g.translate(0, -headR * 0.7);
+    drawHead(g, this, col, headR, t);
+    g.restore();
+
+    g.restore(); // پایان چرخش بدن
+    g.restore(); // پایان ترنسفورم گربه
+  }
 }
 
-/* ---------- تحلیل صدا ---------- */
-let AC,an,fd,prev,playing=false;
-const S={bass:0,mid:0,high:0,e:0,fast:0,slow:.2,flux:0,pulse:0,bpm:100,beat:0,rock:0,cent:0,dens:0,hr:0,hasBpm:false};
-const fh=[],ons=[];let lastOn=-9,bpmShown=0;
-function setup(){if(AC)return;AC=new(window.AudioContext||window.webkitAudioContext)();an=AC.createAnalyser();an.fftSize=2048;an.smoothingTimeConstant=.55;
- const src=AC.createMediaElementSource(au);src.connect(an);an.connect(AC.destination);fd=new Uint8Array(an.frequencyBinCount);prev=new Float32Array(fd.length)}
-function avg(a,b){let s=0;for(let i=a;i<b;i++)s+=fd[i];return s/((b-a)*255)}
-function analyse(dt,t){
- if(!an||!playing){for(const k of['bass','mid','high','flux'])S[k]*=.9;S.fast+=(0-S.fast)*dt*3;S.pulse*=.9;S.e=S.fast;return}
- an.getByteFrequencyData(fd);
- S.bass=avg(1,9);S.mid=avg(9,90);S.high=avg(90,500);
- const hz=AC.sampleRate/an.fftSize;let sw=0,sv=0,dn=0,fl=0;
- for(let i=1;i<300;i++){const v=fd[i];sw+=i*v;sv+=v;if(v>110)dn++;const d=v/255-prev[i];if(d>0&&i<200)fl+=d}
- for(let i=0;i<fd.length;i++)prev[i]=fd[i]/255;
- S.cent=sv?sw/sv*hz:0;S.dens=dn/299;S.flux=fl/200;
- const e=clamp((S.bass*.45+S.mid*.4+S.high*.15-.18)/.5);
- S.fast+=(e-S.fast)*clamp(dt/.18);S.slow+=(e-S.slow)*clamp(dt/7);S.e=S.fast;
- // onset
- fh.push(S.flux);if(fh.length>43)fh.shift();
- const m=fh.reduce((a,b)=>a+b,0)/fh.length;
- S.pulse*=Math.exp(-dt*7);
- if(S.flux>m*1.45+.012&&t-lastOn>.24){
-  if(S.bass>.45){const er=Math.round(S.beat)-S.beat;S.beat+=er*.25}
-  lastOn=t;ons.push(t);if(ons.length>56)ons.shift();S.pulse=1;estBpm()}
- // rock heuristic: dense spectrum + bright + hard transients
- const hr=S.high/(S.bass+S.mid+S.high+.001);
- const raw=clamp((S.dens-.22)/.4)*.55+clamp((hr-.1)/.18)*.2+clamp(S.flux/.06)*.15+clamp((S.bpm-90)/60)*.1;
- S.rock+=(raw*(S.e>.15?1:0)-S.rock)*clamp(dt/3);
-}
-function estBpm(){const h=new Float32Array(48);let n=0;
- for(let i=1;i<ons.length;i++)for(let j=1;j<=3&&i-j>=0;j++){const d=ons[i]-ons[i-j];if(d<.2||d>2.6)continue;let b=60/d;while(b<75)b*=2;while(b>165)b/=2;const x=Math.round((b-75)/2);if(x>=0&&x<48){h[x]+=1/j;if(x>0)h[x-1]+=.5/j;if(x<47)h[x+1]+=.5/j;n++}}
- if(n<6)return;let bi=0;for(let i=1;i<48;i++)if(h[i]>h[bi])bi=i;S.bpm+=(75+bi*2-S.bpm)*.2;S.hasBpm=true}
+/* ============================================================
+   ۵. توابع کمکی رسم (اندام‌های به‌هم‌پیوسته)
+   ============================================================ */
 
-/* ---------- حرکت گربه‌ها ---------- */
-let gu=0,gTarget=0,nextU=4,lt=0,reel=0,lastVib=0;
-function update(dt,t){
- const slump=S.slow>.12?clamp((1-S.fast/(S.slow*.62))):0;
- const asleep=!playing&&S.fast<.03||S.slow>0&&playing&&S.fast<.02;
- S.slump=slump;S.asleep=asleep;
- S.beat+=dt*S.bpm/60;
- if(t>nextU){if(gTarget===0&&Math.random()<.45&&slump<.3){gTarget=1;nextU=t+2.5+Math.random()*3}else{gTarget=0;nextU=t+4+Math.random()*5}}
- gu+=(gTarget-gu)*clamp(dt*1.4);
- const sp=(1-.8*slump)*(playing?1:.3);
- for(const k of CATS){
-  k.own+=dt*Math.PI*(S.bpm/60)*k.mult*sp*(.9+.2*Math.sin(t*.5+k.id*2));
-  const lock=S.beat*Math.PI*(k.mult===.75?1:k.mult)+k.off*0;
-  k.ph=k.own+wrap(lock-k.own)*gu*k.soc;
-  if(slump>.3){ // قطع‌وصل شدن
-   if(k.frozen>0)k.frozen-=dt;else if(Math.random()<dt*slump*1.6)k.frozen=.25+Math.random()*.9;
-   const q=3+(1-slump)*8;k.ph=Math.floor(k.ph*q/6.283)/q*6.283}else k.frozen=0;
-  let tg=playing?clamp(.28+S.e*.95)*(1-slump*.55):.2;
-  if(asleep)tg=.04;if(k.frozen>0)tg*=.15;
-  k.amp+=(tg-k.amp)*clamp(dt*(tg<k.amp?4:7));
- }
- lt+=dt*(.3+(S.bpm/60)*(playing?S.e:0)*1.3);
- reel+=dt*(playing?(40+S.bpm*.7*(.5+S.e)):0);
- $('#r1').style.transform=`rotate(${reel}deg)`;$('#r2').style.transform=`rotate(${reel*.8}deg)`;
- if(S.rock>.5&&S.pulse>.95&&t-lastVib>.2&&navigator.vibrate){try{navigator.vibrate(18+S.rock*30)}catch(e){}lastVib=t}
+/* پا: از هیپ تا زمین با یک خم کوچک */
+function drawLeg(g, col, hipX, hipY, footX, footY, c) {
+  // زانو کمی به بیرون می‌شکند
+  const kx = lerp(hipX, footX, 0.5) + (footX - hipX) * 0.1;
+  const ky = lerp(hipY, footY, 0.5);
+  g.strokeStyle = col.body;
+  g.lineWidth = 0.14;
+  g.lineCap = 'round';
+  g.beginPath();
+  g.moveTo(hipX, hipY);
+  g.quadraticCurveTo(kx, ky, footX, footY - 0.02);
+  g.stroke();
+  // کف پا
+  g.fillStyle = col.belly;
+  g.beginPath();
+  g.ellipse(footX, footY - 0.035, 0.09, 0.05, 0, 0, 7);
+  g.fill();
 }
 
-/* ---------- نمایش ---------- */
-function mood(){
- const val=clamp(.55*clamp((S.bpm-70)/80)+.45*clamp(S.cent/3500));
- if(!playing||S.fast<.05)return['خواب‌آلود',230];
- if(S.rock>.6)return['خشن و طوفانی',3];
- if(val>.6&&S.e>.35)return['شاد و پرشور',38];
- if(val>.45)return['سرخوش',320];
- if(S.e<.3)return['آرام و رؤیایی',250];
- return['دلتنگ و نرم',205];
+/* دنباله: ۳ بند از هیپ به عقب */
+function drawTail(g, col, c, segs, tx, ty) {
+  let x = tx, y = ty;
+  let a = -0.5;
+  g.strokeStyle = col.body;
+  g.lineCap = 'round';
+  g.lineWidth = c.tailType === 'stub' ? 0.15 : 0.10;
+
+  g.beginPath();
+  g.moveTo(x, y);
+
+  const N = c.tailType === 'stub' ? 1 : 3;
+  for (let i = 0; i < N; i++) {
+    const len = (c.tailType === 'stub' ? 0.18 : 0.22 - i * 0.02);
+    a += (segs[i] || 0) * 0.7;
+    x += Math.cos(a) * len;
+    y += Math.sin(a) * len;
+    g.lineTo(x, y);
+  }
+  g.stroke();
 }
-function render(dt,t){
- const [mt,hue]=mood();S.hue=S.hue==null?hue:S.hue+wrap((hue-S.hue)*Math.PI/180)*180/Math.PI*clamp(dt*1.5);
- const hu=S.hue,eN=S.e,rk=S.rock;
- const shk=playing?rk*eN*(.35+S.pulse)+S.pulse*eN*.15:0;
- const sx=(Math.random()-.5)*shk*16,sy=(Math.random()-.5)*shk*16;
- g.setTransform(D,0,0,D,0,0);g.clearRect(0,0,W,H);
- g.save();g.translate(sx,sy);
- const bg=g.createLinearGradient(0,0,0,H);bg.addColorStop(0,`hsl(${hu} 40% ${6+eN*8}%)`);bg.addColorStop(1,`hsl(${hu+20} 35% ${12+eN*10}%)`);
- g.fillStyle=bg;g.fillRect(-20,-20,W+40,H+40);
- // floor
- g.fillStyle=`hsl(${hu} 25% 9%)`;g.fillRect(-20,H*.78,W+40,H);
- g.strokeStyle='#ffffff10';g.lineWidth=1;for(let i=0;i<8;i++){g.beginPath();g.moveTo(0,H*.8+i*i*2.2);g.lineTo(W,H*.8+i*i*2.2);g.stroke()}
- // beams
- g.globalCompositeOperation='lighter';
- const on=playing&&!S.asleep;
- for(let i=0;i<6;i++){
-  const x0=W*(i+.5)/6,ang=Math.sin(lt*(1+i*.13)+i*1.3)*(.35+.35*eN),wd=W*(.06+.05*eN);
-  const xe=x0+Math.tan(ang)*H*1.05,gr=g.createLinearGradient(x0,0,xe,H);
-  const a=(on?.1+.28*eN+S.pulse*.25:.05);
-  gr.addColorStop(0,`hsla(${hu+i*38},95%,65%,${a})`);gr.addColorStop(1,`hsla(${hu+i*38},95%,60%,0)`);
-  g.fillStyle=gr;g.beginPath();g.moveTo(x0-5,0);g.lineTo(x0+5,0);g.lineTo(xe+wd,H);g.lineTo(xe-wd,H);g.fill();
-  g.fillStyle=`hsla(${hu+i*38},95%,60%,${on?.1+.2*eN:.04})`;g.beginPath();g.ellipse(xe,H*.9,wd*1.4,H*.04,0,0,7);g.fill()}
- if(rk>.5&&S.pulse>.8&&on){g.fillStyle=`rgba(255,255,255,${.12*rk})`;g.fillRect(0,0,W,H)}
- g.globalCompositeOperation='source-over';
- // cats
- const Sz=Math.min(W/5.3,H*.62),order=CATS.map((k,i)=>({k,i})).sort((a,b)=>[0,.03,.06,.03,0][a.i]-[0,.03,.06,.03,0][b.i]);
- for(const {k,i} of order){
-  const x=W*(.1+.2*i)+Math.sin(t*.35+i*2)*W*.025*(1-gu),y=H*(.94-[0,.03,.07,.03,0][i]);
-  g.fillStyle='#0007';g.beginPath();g.ellipse(x,y,Sz*k.w*.55,Sz*.05,0,0,7);g.fill();
-  g.save();g.translate(x,y);drawCat(k,t,Sz,S.slump||0,S.asleep);g.restore();
-  if(S.asleep){g.fillStyle='#fffc';g.font=`${Sz*.2}px Lalezar`;g.fillText('z',x+Sz*.2,y-Sz*k.h*(1.0+.1*Math.sin(t*2+i)))}
- }
- g.restore();
- // stage shake (whole frame)
- $('#stage').style.transform=shk>.05?`translate(${sx*.5}px,${sy*.5}px)`:'';
- // VU
- vg.setTransform(D,0,0,D,0,0);const vw=vu.width/D,vh=vu.height/D;vg.clearRect(0,0,vw,vh);
- const N=36;for(let i=0;i<N;i++){const v=fd&&playing?fd[Math.floor(Math.pow(i/N,1.7)*220)+1]/255:.03;
-  const h=Math.max(3,v*vh*(.85+.15*Math.sin(t*5+i)));vg.fillStyle=`hsl(${hu+i*3} 80% ${50+v*15}%)`;vg.beginPath();vg.roundRect?vg.roundRect(i*(vw/N)+2,vh-h,vw/N-4,h,3):vg.rect(i*(vw/N)+2,vh-h,vw/N-4,h);vg.fill()}
+
+/* دست: two-bone با زاویه‌ی شانه و آرنج */
+function solveArm(sx, sy, a1, a2, upper, fore) {
+  const ex = sx + Math.cos(a1) * upper;
+  const ey = sy + Math.sin(a1) * upper;
+  const hx = ex + Math.cos(a1 + a2) * fore;
+  const hy = ey + Math.sin(a1 + a2) * fore;
+  return { sx, sy, ex, ey, hx, hy };
 }
-let hudT=0;
-function hud(t){if(t-hudT<.2)return;hudT=t;
- const [m]=mood();let gen=!playing?'منتظر موزیک…':S.rock>.6?'🤘 راک سنگین — لرزش کامل':S.rock>.4?'گیتار و انرژی بالا':S.e>.45?'پاپ / پرانرژی':'ملایم';
- $('#badge').textContent=gen;$('#mm').textContent=m;
- $('#mb').textContent=playing&&S.hasBpm?fa(S.bpm):'—';$('#me').textContent=fa(S.e*100);$('#ue').style.width=S.e*100+'%';
- $('#mr').textContent=fa(S.rock*100)+'٪';$('#ur').style.width=S.rock*100+'%'}
-let last=performance.now();
-function tick(now){requestAnimationFrame(tick);const dt=Math.min(.05,(now-last)/1000);last=now;const t=now/1000;analyse(dt,t);update(dt,t);render(dt,t);hud(t)}
+function drawArm(g, col, arm) {
+  g.strokeStyle = col.body;
+  g.lineWidth = 0.1;
+  g.lineCap = 'round';
+  g.beginPath();
+  g.moveTo(arm.sx, arm.sy);
+  g.lineTo(arm.ex, arm.ey);
+  g.lineTo(arm.hx, arm.hy);
+  g.stroke();
+  // پنجه
+  g.fillStyle = col.belly;
+  g.beginPath();
+  g.arc(arm.hx, arm.hy, 0.06, 0, 7);
+  g.fill();
+}
+
+/* الگوهای خز */
+function drawPattern(g, cat, col, bodyW, bodyH) {
+  if (cat.cfg.pattern === 'tabby') {
+    g.strokeStyle = col.dark;
+    g.lineWidth = 0.028;
+    for (let i = -1; i <= 1; i++) {
+      g.beginPath();
+      g.moveTo(-bodyW * 0.5 + 0.02, -bodyH * 0.5 + i * 0.14);
+      g.quadraticCurveTo(-bodyW * 0.35, -bodyH * 0.46 + i * 0.14, -bodyW * 0.22, -bodyH * 0.5 + i * 0.14);
+      g.stroke();
+    }
+  } else if (cat.cfg.pattern === 'calico') {
+    g.fillStyle = col.dark;
+    g.beginPath(); g.ellipse(-bodyW * 0.25, -bodyH * 0.1, 0.1, 0.09, 0, 0, 7); g.fill();
+    g.fillStyle = '#d98e4a';
+    g.beginPath(); g.ellipse(bodyW * 0.28, bodyH * 0.1, 0.09, 0.08, 0, 0, 7); g.fill();
+  } else if (cat.cfg.pattern === 'tux') {
+    g.fillStyle = '#f6f6f4';
+    g.beginPath();
+    g.ellipse(0, bodyH * 0.2, bodyW * 0.28, bodyH * 0.3, 0, 0, 7);
+    g.fill();
+    g.beginPath();
+    g.moveTo(0, -bodyH * 0.5);
+    g.lineTo(-0.08, 0);
+    g.lineTo(0.08, 0);
+    g.closePath();
+    g.fill();
+  }
+}
+
+/* لباس بر اساس سبک */
+function drawClothes(g, cat, style, bodyW, bodyH) {
+  const cl = style.clothes;
+  if (!cl) return;
+  g.save();
+
+  if (cl.type === 'leather') {
+    // کاپشن چرم مشکی روی بدن
+    g.fillStyle = cl.color;
+    g.beginPath();
+    g.ellipse(0, bodyH * 0.05, bodyW * 0.5, bodyH * 0.4, 0, 0, 7);
+    g.fill();
+    // یقه
+    g.fillStyle = '#2a2a2a';
+    g.beginPath();
+    g.moveTo(-bodyW * 0.3, -bodyH * 0.3);
+    g.lineTo(0, -bodyH * 0.15);
+    g.lineTo(bodyW * 0.3, -bodyH * 0.3);
+    g.lineTo(bodyW * 0.15, -bodyH * 0.35);
+    g.lineTo(0, -bodyH * 0.22);
+    g.lineTo(-bodyW * 0.15, -bodyH * 0.35);
+    g.closePath();
+    g.fill();
+    // میخ‌های فلزی
+    g.fillStyle = cl.accent;
+    for (let i = -1; i <= 1; i++) {
+      g.beginPath();
+      g.arc(i * bodyW * 0.18, bodyH * 0.28, 0.015, 0, 7);
+      g.fill();
+    }
+    // شلوار جین پاره (پایین‌تنه)
+    g.fillStyle = '#3b4a66';
+    g.beginPath();
+    g.ellipse(0, bodyH * 0.35, bodyW * 0.42, bodyH * 0.12, 0, 0, 7);
+    g.fill();
+  } else if (cl.type === 'tshirt') {
+    g.fillStyle = cl.color;
+    g.beginPath();
+    g.ellipse(0, bodyH * 0.08, bodyW * 0.46, bodyH * 0.36, 0, 0, 7);
+    g.fill();
+    // یقه سفید
+    g.strokeStyle = cl.accent;
+    g.lineWidth = 0.03;
+    g.beginPath();
+    g.arc(0, -bodyH * 0.22, bodyW * 0.2, 0.15 * Math.PI, 0.85 * Math.PI);
+    g.stroke();
+  } else if (cl.type === 'tuxedo') {
+    // کت و شلوار مشکی
+    g.fillStyle = cl.color;
+    g.beginPath();
+    g.ellipse(0, bodyH * 0.08, bodyW * 0.46, bodyH * 0.4, 0, 0, 7);
+    g.fill();
+    // پیراهن سفید
+    g.fillStyle = cl.accent;
+    g.beginPath();
+    g.moveTo(-bodyW * 0.18, -bodyH * 0.3);
+    g.lineTo(bodyW * 0.18, -bodyH * 0.3);
+    g.lineTo(bodyW * 0.14, bodyH * 0.3);
+    g.lineTo(-bodyW * 0.14, bodyH * 0.3);
+    g.closePath();
+    g.fill();
+    // پاپیون
+    g.fillStyle = '#000';
+    const by = -bodyH * 0.28;
+    g.beginPath();
+    g.moveTo(0, by); g.lineTo(-0.05, by - 0.03); g.lineTo(-0.05, by + 0.03);
+    g.closePath();
+    g.moveTo(0, by); g.lineTo(0.05, by - 0.03); g.lineTo(0.05, by + 0.03);
+    g.closePath();
+    g.fill();
+  } else if (cl.type === 'suit') {
+    g.fillStyle = cl.color;
+    g.beginPath();
+    g.ellipse(0, bodyH * 0.08, bodyW * 0.48, bodyH * 0.4, 0, 0, 7);
+    g.fill();
+    // یقه‌ی کت
+    g.strokeStyle = cl.accent;
+    g.lineWidth = 0.02;
+    g.beginPath();
+    g.moveTo(-bodyW * 0.2, -bodyH * 0.28);
+    g.lineTo(0, -bodyH * 0.05);
+    g.lineTo(bodyW * 0.2, -bodyH * 0.28);
+    g.stroke();
+  } else if (cl.type === 'neon') {
+    g.fillStyle = cl.color;
+    g.beginPath();
+    g.ellipse(0, bodyH * 0.08, bodyW * 0.46, bodyH * 0.36, 0, 0, 7);
+    g.fill();
+    // نوارهای نئون
+    g.strokeStyle = cl.accent;
+    g.lineWidth = 0.025;
+    for (let i = -1; i <= 1; i++) {
+      g.beginPath();
+      g.moveTo(-bodyW * 0.4, bodyH * 0.05 + i * 0.12);
+      g.lineTo(bodyW * 0.4, bodyH * 0.05 + i * 0.12);
+      g.stroke();
+    }
+  } else if (cl.type === 'hoodie') {
+    g.fillStyle = cl.color;
+    g.beginPath();
+    g.ellipse(0, bodyH * 0.1, bodyW * 0.5, bodyH * 0.4, 0, 0, 7);
+    g.fill();
+    // کلاه (پشت سر)
+    g.fillStyle = cl.color;
+    g.beginPath();
+    g.ellipse(0, -bodyH * 0.35, bodyW * 0.34, bodyH * 0.15, 0, 0, 7);
+    g.fill();
+    // زنجیر
+    g.strokeStyle = cl.accent;
+    g.lineWidth = 0.025;
+    g.beginPath();
+    g.arc(0, -bodyH * 0.05, bodyW * 0.25, 0.15 * Math.PI, 0.85 * Math.PI);
+    g.stroke();
+    g.fillStyle = cl.accent;
+    g.beginPath();
+    g.arc(0, bodyH * 0.15, 0.03, 0, 7);
+    g.fill();
+  }
+  g.restore();
+}
+
+/* ساز در دست گربه */
+function drawInstrument(g, cat, style, armL, armR, bodyW, bodyH) {
+  const role = cat.role;
+  const gtr = style.guitar;
+
+  if (role === 'guitar' && gtr) {
+    drawGuitar(g, gtr, armL, armR, cat, style);
+  } else if (role === 'bass' && gtr) {
+    drawGuitar(g, 'bass', armL, armR, cat, style);
+  } else if (role === 'drums') {
+    drawDrumKit(g, cat, bodyW, bodyH);
+  } else if (role === 'vocal') {
+    drawMic(g, armL);
+  } else if (role === 'keys' && style.hasPiano) {
+    drawKeyboard(g, cat, armL, armR, bodyW);
+  } else if (role === 'keys' && !style.hasPiano) {
+    // در سبک بدون پیانو → جایگزین: سینت‌استند یا آمپ
+    drawAmp(g, bodyW);
+  }
+  // آمپ راک در کنار
+  if (style.hasAmp && role === 'guitar') {
+    // (آمپ فقط برای گیتاریست)
+  }
+}
+
+function drawGuitar(g, kind, armL, armR, cat, style) {
+  // بدنه‌ی گیتار بین دست چپ (فرت) و دست راست (اسکن)
+  const handL = { x: armL.hx, y: armL.hy };
+  const handR = { x: armR.hx, y: armR.hy };
+  // مرکز گیتار بین دو دست، کمی پایین‌تر
+  const cx = (handL.x * 0.35 + handR.x * 0.65);
+  const cy = (handL.y * 0.35 + handR.y * 0.65) + 0.08;
+  // زاویه‌ی گیتار نسبت به خط بین دو دست
+  const ang = Math.atan2(handR.y - handL.y, handR.x - handL.x);
+
+  g.save();
+  g.translate(cx, cy);
+  g.rotate(ang * 0.7);
+
+  if (kind === 'electric') {
+    // بدنه‌ی چوبی مشکی، دو کات‌اُوِی
+    g.fillStyle = '#1a1a1a';
+    g.strokeStyle = '#000';
+    g.lineWidth = 0.015;
+    g.beginPath();
+    g.moveTo(-0.15, 0.02);
+    g.bezierCurveTo(-0.18, -0.08, -0.05, -0.14, 0.02, -0.12);
+    g.bezierCurveTo(0.08, -0.14, 0.2, -0.08, 0.2, 0.02);
+    g.bezierCurveTo(0.22, 0.08, 0.08, 0.14, 0, 0.12);
+    g.bezierCurveTo(-0.08, 0.14, -0.18, 0.08, -0.15, 0.02);
+    g.closePath();
+    g.fill(); g.stroke();
+    // پیکاپ‌ها
+    g.fillStyle = '#c8c8c8';
+    g.fillRect(-0.05, -0.02, 0.04, 0.04);
+    g.fillRect(0.0, -0.02, 0.04, 0.04);
+    // نِک
+    g.fillStyle = '#3a2a1f';
+    g.fillRect(0.17, -0.02, 0.4, 0.04);
+    // فرت‌ها
+    g.strokeStyle = '#e0d0a0';
+    g.lineWidth = 0.005;
+    for (let i = 0; i < 6; i++) {
+      g.beginPath();
+      g.moveTo(0.2 + i * 0.06, -0.02);
+      g.lineTo(0.2 + i * 0.06, 0.02);
+      g.stroke();
+    }
+  } else if (kind === 'acoustic') {
+    g.fillStyle = '#d9a86a';
+    g.strokeStyle = '#5a3a1a';
+    g.lineWidth = 0.012;
+    g.beginPath();
+    g.ellipse(0, 0, 0.16, 0.12, 0, 0, 7);
+    g.fill(); g.stroke();
+    // سوراخ صدا
+    g.fillStyle = '#2a1a10';
+    g.beginPath(); g.arc(0.01, 0, 0.03, 0, 7); g.fill();
+    // نِک
+    g.fillStyle = '#7a5a3a';
+    g.fillRect(0.15, -0.02, 0.42, 0.04);
+    for (let i = 0; i < 6; i++) {
+      g.beginPath();
+      g.moveTo(0.2 + i * 0.06, -0.02);
+      g.lineTo(0.2 + i * 0.06, 0.02);
+      g.stroke();
+    }
+  } else if (kind === 'classical') {
+    g.fillStyle = '#e0b878';
+    g.strokeStyle = '#6a4a20';
+    g.lineWidth = 0.012;
+    g.beginPath();
+    g.ellipse(0, 0, 0.17, 0.13, 0, 0, 7);
+    g.fill(); g.stroke();
+    g.fillStyle = '#2a1a10';
+    g.beginPath(); g.arc(0.01, 0, 0.032, 0, 7); g.fill();
+    g.fillStyle = '#5a3a1a';
+    g.fillRect(0.16, -0.02, 0.42, 0.04);
+  } else if (kind === 'jazz') {
+    // hollow body با f-hole
+    g.fillStyle = '#8a4a1a';
+    g.strokeStyle = '#3a2010';
+    g.lineWidth = 0.012;
+    g.beginPath();
+    g.ellipse(0, 0, 0.17, 0.13, 0, 0, 7);
+    g.fill(); g.stroke();
+    // f-hole
+    g.strokeStyle = '#000';
+    g.lineWidth = 0.008;
+    g.beginPath();
+    g.moveTo(-0.08, -0.04); g.quadraticCurveTo(-0.06, 0, -0.08, 0.04);
+    g.stroke();
+    g.beginPath();
+    g.moveTo(0.08, -0.04); g.quadraticCurveTo(0.06, 0, 0.08, 0.04);
+    g.stroke();
+    g.fillStyle = '#3a2a1a';
+    g.fillRect(0.16, -0.02, 0.42, 0.04);
+  } else if (kind === 'bass') {
+    g.fillStyle = '#1a1a1a';
+    g.strokeStyle = '#000';
+    g.lineWidth = 0.015;
+    g.beginPath();
+    g.moveTo(-0.16, 0.02);
+    g.bezierCurveTo(-0.2, -0.1, -0.05, -0.15, 0.02, -0.13);
+    g.bezierCurveTo(0.1, -0.15, 0.22, -0.1, 0.22, 0.02);
+    g.bezierCurveTo(0.24, 0.09, 0.08, 0.14, 0, 0.12);
+    g.bezierCurveTo(-0.08, 0.14, -0.2, 0.09, -0.16, 0.02);
+    g.closePath();
+    g.fill(); g.stroke();
+    g.fillStyle = '#c8c8c8';
+    g.fillRect(-0.05, -0.02, 0.05, 0.04);
+    g.fillRect(0.01, -0.02, 0.05, 0.04);
+    g.fillStyle = '#3a2a1f';
+    g.fillRect(0.19, -0.025, 0.45, 0.05);
+    g.strokeStyle = '#e0d0a0';
+    g.lineWidth = 0.005;
+    for (let i = 0; i < 5; i++) {
+      g.beginPath();
+      g.moveTo(0.22 + i * 0.08, -0.025);
+      g.lineTo(0.22 + i * 0.08, 0.025);
+      g.stroke();
+    }
+  } else if (kind === 'synth') {
+    // کیبورد سینتی روی گردن
+    g.fillStyle = '#1a1030';
+    g.strokeStyle = '#20e0ff';
+    g.lineWidth = 0.015;
+    g.beginPath();
+    g.ellipse(0, 0, 0.18, 0.1, 0, 0, 7);
+    g.fill(); g.stroke();
+    g.fillStyle = '#20e0ff';
+    for (let i = 0; i < 8; i++) {
+      g.fillRect(-0.15 + i * 0.038, -0.03, 0.02, 0.06);
+    }
+  }
+  g.restore();
+}
+
+function drawDrumKit(g, cat, bodyW, bodyH) {
+  // کیت درام کوچک در مقابل درامر، پایین قاب
+  const bx = 0;
+  const by = -0.05; // نزدیک زمین
+  g.save();
+  g.translate(bx, by);
+
+  // بیس درام
+  g.fillStyle = '#8a2a20';
+  g.strokeStyle = '#000';
+  g.lineWidth = 0.02;
+  g.beginPath();
+  g.arc(0, -0.08, 0.14, 0, 7);
+  g.fill(); g.stroke();
+  g.fillStyle = '#fff5d8';
+  g.beginPath(); g.arc(0, -0.08, 0.05, 0, 7); g.fill();
+
+  // دو توم روی بیس
+  g.fillStyle = '#c88a3a';
+  g.beginPath();
+  g.ellipse(-0.18, -0.22, 0.09, 0.05, 0, 0, 7);
+  g.fill(); g.stroke();
+  g.beginPath();
+  g.ellipse(0.05, -0.24, 0.09, 0.05, 0, 0, 7);
+  g.fill(); g.stroke();
+
+  // های‌هت
+  g.fillStyle = '#c8a860';
+  g.beginPath();
+  g.ellipse(-0.32, -0.32, 0.06, 0.02, 0, 0, 7);
+  g.fill(); g.stroke();
+
+  // سنج
+  g.fillStyle = '#e0c060';
+  g.beginPath();
+  g.ellipse(0.3, -0.36, 0.09, 0.02, 0, 0, 7);
+  g.fill(); g.stroke();
+
+  g.restore();
+}
+
+function drawMic(g, armL) {
+  // میکروفون در دست چپ
+  const hx = armL.hx, hy = armL.hy;
+  g.save();
+  g.translate(hx, hy - 0.06);
+  g.rotate(-0.4);
+  // بدنه
+  g.fillStyle = '#333';
+  g.strokeStyle = '#000';
+  g.lineWidth = 0.012;
+  g.beginPath();
+  g.roundRect(-0.03, -0.14, 0.06, 0.16, 0.02);
+  g.fill(); g.stroke();
+  // سر میکروفون
+  g.fillStyle = '#888';
+  g.beginPath();
+  g.ellipse(0, -0.16, 0.045, 0.04, 0, 0, 7);
+  g.fill(); g.stroke();
+  // خطوط
+  g.strokeStyle = '#aaa';
+  g.lineWidth = 0.005;
+  for (let i = 0; i < 4; i++) {
+    g.beginPath();
+    g.moveTo(-0.04, -0.17 + i * 0.01);
+    g.lineTo(0.04, -0.17 + i * 0.01);
+    g.stroke();
+  }
+  g.restore();
+}
+
+function drawKeyboard(g, cat, armL, armR, bodyW) {
+  // کیبورد در مقابل پیانیست
+  const y = -0.05;
+  g.save();
+  g.translate(0, y);
+  // بدنه
+  g.fillStyle = '#2a1a10';
+  g.strokeStyle = '#000';
+  g.lineWidth = 0.015;
+  g.beginPath();
+  g.roundRect(-bodyW * 0.6, -0.12, bodyW * 1.2, 0.14, 0.02);
+  g.fill(); g.stroke();
+  // کلیدهای سفید
+  g.fillStyle = '#f1e4cc';
+  const N = 12;
+  for (let i = 0; i < N; i++) {
+    g.fillRect(-bodyW * 0.55 + i * (bodyW * 1.1 / N), -0.10, (bodyW * 1.1 / N) - 0.006, 0.10);
+  }
+  // کلیدهای سیاه
+  g.fillStyle = '#000';
+  for (let i = 0; i < N; i++) {
+    if (i % 7 === 2 || i % 7 === 6) continue;
+    if (i % 2 === 1) {
+      g.fillRect(-bodyW * 0.55 + i * (bodyW * 1.1 / N) + 0.008, -0.10, (bodyW * 1.1 / N) * 0.55, 0.06);
+    }
+  }
+  g.restore();
+}
+
+function drawAmp(g, bodyW) {
+  g.save();
+  g.translate(bodyW * 0.7, -0.1);
+  g.fillStyle = '#151515';
+  g.strokeStyle = '#000';
+  g.lineWidth = 0.015;
+  g.beginPath();
+  g.roundRect(-0.14, -0.2, 0.28, 0.24, 0.02);
+  g.fill(); g.stroke();
+  // توری
+  g.fillStyle = '#3a3a3a';
+  g.beginPath();
+  g.roundRect(-0.12, -0.18, 0.24, 0.16, 0.01);
+  g.fill();
+  g.strokeStyle = '#666';
+  g.lineWidth = 0.004;
+  for (let i = 0; i < 8; i++) {
+    g.beginPath();
+    g.moveTo(-0.12, -0.17 + i * 0.02);
+    g.lineTo(0.12, -0.17 + i * 0.02);
+    g.stroke();
+  }
+  // پنل
+  g.fillStyle = '#c9a961';
+  g.beginPath();
+  g.arc(0.06, -0.02, 0.015, 0, 7);
+  g.fill();
+  g.restore();
+}
+
+/* سر گربه: گوش، چشم، بینی، دهن، سبیل، اکسسوری سبک */
+function drawHead(g, cat, col, r, t) {
+  const style = cat._style || STYLES.rock;
+  const asleep = cat.eyeShut > 0.7;
+
+  /* گوش‌ها (پشت سر) */
+  g.fillStyle = col.body;
+  for (let s = -1; s <= 1; s += 2) {
+    g.save();
+    g.translate(s * r * 0.65, -r * 0.7);
+    g.rotate(s * (0.1 + (s < 0 ? cat.earL : cat.earR)));
+    if (cat.cfg.earType === 'point') {
+      g.beginPath();
+      g.moveTo(-r * 0.3, r * 0.4);
+      g.lineTo(0, -r * 0.65);
+      g.lineTo(r * 0.3, r * 0.4);
+      g.closePath();
+      g.fill();
+      // داخل گوش
+      g.fillStyle = '#f2a3a8';
+      g.beginPath();
+      g.moveTo(-r * 0.16, r * 0.28);
+      g.lineTo(0, -r * 0.42);
+      g.lineTo(r * 0.16, r * 0.28);
+      g.closePath();
+      g.fill();
+    } else {
+      // گوش تاشو (اسکاتیش)
+      g.beginPath();
+      g.ellipse(0, 0, r * 0.28, r * 0.22, 0, 0, 7);
+      g.fill();
+    }
+    g.restore();
+  }
+
+  /* سر */
+  g.fillStyle = col.body;
+  g.beginPath();
+  g.ellipse(0, 0, r * 1.12, r, 0, 0, 7);
+  g.fill();
+
+  /* پوزه روشن */
+  g.fillStyle = col.belly;
+  g.beginPath();
+  g.ellipse(0, r * 0.35, r * 0.55, r * 0.42, 0, 0, 7);
+  g.fill();
+
+  /* الگوی تکسیدو روی صورت */
+  if (cat.cfg.pattern === 'tux') {
+    g.fillStyle = '#f6f6f4';
+    g.beginPath();
+    g.moveTo(0, -r * 0.9);
+    g.lineTo(-r * 0.14, r * 0.1);
+    g.lineTo(r * 0.14, r * 0.1);
+    g.closePath();
+    g.fill();
+  }
+  /* الگوی کالیکو */
+  if (cat.cfg.pattern === 'calico') {
+    g.fillStyle = col.dark;
+    g.beginPath();
+    g.ellipse(-r * 0.6, -r * 0.3, r * 0.45, r * 0.4, 0, 0, 7);
+    g.fill();
+    g.fillStyle = '#d98e4a';
+    g.beginPath();
+    g.ellipse(r * 0.6, -r * 0.5, r * 0.32, r * 0.28, 0, 0, 7);
+    g.fill();
+  }
+  /* خطوط تابی روی پیشانی */
+  if (cat.cfg.pattern === 'tabby') {
+    g.strokeStyle = col.dark;
+    g.lineWidth = 0.02;
+    for (const x of [-0.05, 0, 0.05]) {
+      g.beginPath();
+      g.moveTo(x * r / 0.05 * 0.05, -r * 0.9);
+      g.lineTo(x * r / 0.05 * 0.05, -r * 0.55);
+      g.stroke();
+    }
+  }
+
+  /* چشم‌ها */
+  const blink = cat.blinkT > 3.9 && cat.blinkT < 4.05;
+  const eyeY = -r * 0.05;
+  const eyeR = r * 0.17;
+  for (let s = -1; s <= 1; s += 2) {
+    const ex = s * r * 0.42;
+    if (asleep || blink) {
+      g.strokeStyle = '#1c1410';
+      g.lineWidth = 0.02;
+      g.beginPath();
+      g.arc(ex, eyeY, eyeR, 0.15, Math.PI - 0.15);
+      g.stroke();
+    } else {
+      // سفیدی
+      g.fillStyle = '#fff';
+      g.beginPath();
+      g.ellipse(ex, eyeY, eyeR, eyeR * 1.15, 0, 0, 7);
+      g.fill();
+      // مردمک (بسته به سبک رنگ)
+      const pupilCol = cat.cfg.pattern === 'tux' ? '#9be15d' : '#1c1410';
+      g.fillStyle = pupilCol;
+      g.beginPath();
+      g.ellipse(ex, eyeY, eyeR * 0.55, eyeR * 0.95, 0, 0, 7);
+      g.fill();
+      // برق
+      g.fillStyle = '#fff';
+      g.beginPath();
+      g.arc(ex + r * 0.04, eyeY - r * 0.05, r * 0.05, 0, 7);
+      g.fill();
+    }
+  }
+
+  /* بینی */
+  g.fillStyle = '#f27c8c';
+  g.beginPath();
+  g.moveTo(-r * 0.05, r * 0.22);
+  g.lineTo(r * 0.05, r * 0.22);
+  g.lineTo(0, r * 0.3);
+  g.closePath();
+  g.fill();
+
+  /* دهان (خواننده = متحرک، بقیه = خط ثابت) */
+  const isSinger = cat.role === 'vocal';
+  if (isSinger) {
+    // دهان باز بر اساس mouthOpen
+    const m = cat.mouthOpen;
+    if (m > 0.08) {
+      g.fillStyle = '#7a1220';
+      g.beginPath();
+      g.ellipse(0, r * 0.5, r * 0.16, r * 0.12 + m * r * 0.15, 0, 0, 7);
+      g.fill();
+      // زبان
+      g.fillStyle = '#e06070';
+      g.beginPath();
+      g.ellipse(0, r * 0.56 + m * r * 0.1, r * 0.1, r * 0.05 + m * r * 0.06, 0, 0, 7);
+      g.fill();
+      // خط لب بالا
+      g.strokeStyle = '#1c1410';
+      g.lineWidth = 0.012;
+      g.beginPath();
+      g.arc(0, r * 0.42, r * 0.18, Math.PI + 0.2, -0.2);
+      g.stroke();
+    } else {
+      g.strokeStyle = '#1c1410';
+      g.lineWidth = 0.018;
+      g.beginPath();
+      g.arc(-r * 0.1, r * 0.42, r * 0.13, 0.1, Math.PI - 0.1);
+      g.stroke();
+      g.beginPath();
+      g.arc(r * 0.1, r * 0.42, r * 0.13, 0.1, Math.PI - 0.1);
+      g.stroke();
+    }
+  } else {
+    g.strokeStyle = '#1c1410';
+    g.lineWidth = 0.018;
+    g.beginPath();
+    g.arc(-r * 0.1, r * 0.42, r * 0.13, 0.1, Math.PI - 0.1);
+    g.stroke();
+    g.beginPath();
+    g.arc(r * 0.1, r * 0.42, r * 0.13, 0.1, Math.PI - 0.1);
+    g.stroke();
+  }
+
+  /* سبیل */
+  g.strokeStyle = '#fff9';
+  g.lineWidth = 0.01;
+  for (let s = -1; s <= 1; s += 2) {
+    for (let j = -1; j <= 1; j++) {
+      g.beginPath();
+      g.moveTo(s * r * 0.55, r * 0.3 + j * 0.03);
+      g.lineTo(s * r * 1.25, r * 0.26 + j * 0.06);
+      g.stroke();
+    }
+  }
+
+  /* اکسسوری سبک */
+  drawHeadAccessory(g, cat, r, style);
+}
+
+function drawHeadAccessory(g, cat, r, style) {
+  const acc = style.clothes.accessory;
+
+  // نقش «خواننده» همیشه تاج دارد
+  if (cat.role === 'vocal') {
+    g.fillStyle = '#ffd24a';
+    g.strokeStyle = '#b88a10';
+    g.lineWidth = 0.012;
+    g.beginPath();
+    g.moveTo(-r * 0.55, -r * 0.9);
+    g.lineTo(-r * 0.55, -r * 1.4);
+    g.lineTo(-r * 0.28, -r * 1.15);
+    g.lineTo(0, -r * 1.6);
+    g.lineTo(r * 0.28, -r * 1.15);
+    g.lineTo(r * 0.55, -r * 1.4);
+    g.lineTo(r * 0.55, -r * 0.9);
+    g.closePath();
+    g.fill(); g.stroke();
+    // جواهر
+    g.fillStyle = '#e0364f';
+    g.beginPath(); g.arc(0, -r * 1.15, r * 0.06, 0, 7); g.fill();
+  }
+
+  if (acc === 'bowtie') {
+    const y = -r * 0.95;
+    g.fillStyle = '#000';
+    g.beginPath();
+    g.moveTo(0, y); g.lineTo(-r * 0.18, y - r * 0.1); g.lineTo(-r * 0.18, y + r * 0.1);
+    g.closePath();
+    g.moveTo(0, y); g.lineTo(r * 0.18, y - r * 0.1); g.lineTo(r * 0.18, y + r * 0.1);
+    g.closePath();
+    g.fill();
+  } else if (acc === 'headband') {
+    g.fillStyle = '#fff';
+    g.strokeStyle = '#000';
+    g.lineWidth = 0.008;
+    g.beginPath();
+    g.rect(-r * 1.0, -r * 0.6, r * 2.0, r * 0.14);
+    g.fill(); g.stroke();
+  } else if (acc === 'fedora') {
+    g.fillStyle = '#1a1414';
+    g.beginPath();
+    g.ellipse(0, -r * 0.85, r * 1.15, r * 0.2, 0, 0, 7);
+    g.fill();
+    g.fillStyle = '#2a2020';
+    g.beginPath();
+    g.roundRect(-r * 0.6, -r * 1.5, r * 1.2, r * 0.7, r * 0.1);
+    g.fill();
+    g.fillStyle = '#8a6a30';
+    g.fillRect(-r * 0.6, -r * 1.05, r * 1.2, r * 0.12);
+  } else if (acc === 'headset') {
+    g.strokeStyle = '#20e0ff';
+    g.lineWidth = 0.02;
+    g.beginPath();
+    g.arc(0, -r * 0.2, r * 1.05, Math.PI + 0.3, -0.3);
+    g.stroke();
+    g.fillStyle = '#20e0ff';
+    g.beginPath(); g.arc(-r * 0.95, -r * 0.2, r * 0.18, 0, 7); g.fill();
+    g.beginPath(); g.arc( r * 0.95, -r * 0.2, r * 0.18, 0, 7); g.fill();
+  } else if (acc === 'chain') {
+    // (روی گردن، در drawClothes کشیده شده)
+  } else if (acc === 'studs') {
+    // (روی یقه، در drawClothes کشیده شده)
+  }
+}
+
+/* ============================================================
+   ۶. صحنه و رندر
+   ============================================================ */
+const cv = $('#cv'), g = cv.getContext('2d');
+const vu = $('#vu'), vg = vu.getContext('2d');
+const stageEl = $('#stage');
+const au = $('#au');
+
+let W = 0, H = 0, D = 1;
+function fitCanvas() {
+  D = Math.min(devicePixelRatio || 1, 2);
+  for (const c of [cv, vu]) {
+    c.width = c.clientWidth * D;
+    c.height = c.clientHeight * D;
+  }
+  W = cv.width / D;
+  H = cv.height / D;
+}
+addEventListener('resize', fitCanvas);
+fitCanvas();
+
+/* گربه‌ها */
+const CATS = CAT_DEFS.map((d, i) => new Cat(d, i));
+/* ضریب تمپوی هر گربه: خواننده ۱، گیتار ۱، درام ۱.۵، کیبورد ۰.۷۵، بیس ۰.۵ */
+const MULT = [1.0, 1.5, 1.0, 0.75, 0.5];
+CATS.forEach((c, i) => { c.mult = MULT[i]; c.offset = i * 1.4; });
+
+/* موتور و ذرات */
+const A = new AudioEngine(au);
+const parts = new Particles();
+
+/* وضعیت UI */
+const state = {
+  style: 'rock',
+  playing: false,
+  showModal: false,
+};
+
+/* ============================================================
+   ۷. حلقه‌ی رندر
+   ============================================================ */
+let lastT = performance.now();
+let reel = 0;
+let shakeAmount = 0;
+let shakeX = 0, shakeY = 0;
+let lastVib = 0;
+let hueCur = null; // برای انتقال نرم رنگ
+
+function chooseHue() {
+  // رنگ آسمان صحنه: وابسته به سبک + انرژی
+  const accentHue = { rock: 8, pop: 330, classic: 40, jazz: 25, electronic: 195, hiphop: 45 }[state.style];
+  const energyShift = A.sEnergy * 30;
+  return (accentHue + energyShift + 360) % 360;
+}
+
+function mood() {
+  if (!state.playing || A.silence > 0.7) return ['خواب‌آلود', 230];
+  if (state.style === 'rock' && A.sEnergy > 0.4) return ['خشن و طوفانی', 8];
+  if (A.sEnergy > 0.5) return ['شاد و پرشور', chooseHue()];
+  if (A.sEnergy > 0.25) return ['سرخوش', chooseHue()];
+  return ['آرام و رؤیایی', 220];
+}
+
+function render(dt, t) {
+  /* ---------- شیک ---------- */
+  const style = STYLES[state.style];
+  const fx = style.effects;
+  const shk = state.playing && A.silence < 0.5
+    ? (A.pulse * A.sEnergy * 12 * fx.shake + A.rock * 4) * (1 - A.silence)
+    : 0;
+  shakeAmount += (shk - shakeAmount) * clamp(dt * 12);
+  shakeX = (Math.random() - 0.5) * shakeAmount;
+  shakeY = (Math.random() - 0.5) * shakeAmount;
+
+  /* ---------- بک‌گراند ---------- */
+  g.setTransform(D, 0, 0, D, 0, 0);
+  g.clearRect(0, 0, W, H);
+  g.save();
+  g.translate(shakeX, shakeY);
+
+  const targetHue = chooseHue();
+  if (hueCur === null) hueCur = targetHue;
+  else hueCur += wrap((targetHue - hueCur) * Math.PI / 180) * 180 / Math.PI * clamp(dt * 1.5);
+  const hu = hueCur;
+  const eN = A.sEnergy;
+
+  const bgGrad = g.createLinearGradient(0, 0, 0, H);
+  bgGrad.addColorStop(0, `hsl(${hu} 40% ${5 + eN * 10}%)`);
+  bgGrad.addColorStop(1, `hsl(${hu + 20} 35% ${11 + eN * 12}%)`);
+  g.fillStyle = bgGrad;
+  g.fillRect(-40, -40, W + 80, H + 80);
+
+  /* زمین */
+  g.fillStyle = `hsl(${hu} 25% 8%)`;
+  g.fillRect(-40, H * 0.78, W + 80, H);
+
+  /* خطوط زمین */
+  g.strokeStyle = '#ffffff10';
+  g.lineWidth = 1;
+  for (let i = 0; i < 8; i++) {
+    g.beginPath();
+    g.moveTo(0, H * 0.8 + i * i * 2.2);
+    g.lineTo(W, H * 0.8 + i * i * 2.2);
+    g.stroke();
+  }
+
+  /* نورافکن‌ها (بدون چرخش دیوانه - فقط نوسان آرام) */
+  g.globalCompositeOperation = 'lighter';
+  const on = state.playing && A.silence < 0.4;
+  for (let i = 0; i < 6; i++) {
+    const x0 = W * (i + 0.5) / 6;
+    const ang = Math.sin(t * (0.6 + i * 0.08) + i * 1.3) * (0.28 + 0.3 * eN);
+    const wd = W * (0.05 + 0.05 * eN);
+    const xe = x0 + Math.tan(ang) * H * 1.05;
+    const beamHue = (hu + i * 38) % 360;
+    const alpha = on ? (0.08 + 0.28 * eN + A.pulse * 0.28 * fx.shake) : 0.05;
+    const gr = g.createLinearGradient(x0, 0, xe, H);
+    gr.addColorStop(0, `hsla(${beamHue},95%,65%,${alpha})`);
+    gr.addColorStop(1, `hsla(${beamHue},95%,60%,0)`);
+    g.fillStyle = gr;
+    g.beginPath();
+    g.moveTo(x0 - 5, 0);
+    g.lineTo(x0 + 5, 0);
+    g.lineTo(xe + wd, H);
+    g.lineTo(xe - wd, H);
+    g.fill();
+    g.fillStyle = `hsla(${beamHue},95%,60%,${on ? 0.1 + 0.2 * eN : 0.04})`;
+    g.beginPath();
+    g.ellipse(xe, H * 0.9, wd * 1.4, H * 0.04, 0, 0, 7);
+    g.fill();
+  }
+  g.globalCompositeOperation = 'source-over';
+
+  /* فلاش راک */
+  if (state.style === 'rock' && A.pulse > 0.8 && on) {
+    g.fillStyle = `rgba(255,255,255,${0.1 * A.rock * fx.shake})`;
+    g.fillRect(0, 0, W, H);
+  }
+
+  /* ---------- گربه‌ها ---------- */
+  const Sz = Math.min(W / 5.3, H * 0.62);
+  const order = [0, 1, 2, 3, 4]; // چپ به راست
+  for (const i of order) {
+    const cat = CATS[i];
+    cat._style = style;
+    const x = W * (0.1 + 0.2 * i) + Math.sin(t * 0.35 + i * 2) * W * 0.02 * (1 - A.silence);
+    const y = H * 0.94;
+    cat.x = x;
+    cat.y = y;
+    cat.scale = Sz;
+    // توجه: cat.draw خودش ترنسفورم را اعمال می‌کند
+    cat.draw(g, style, t);
+    // "z" خواب
+    if (A.silence > 0.6) {
+      g.fillStyle = '#fffc';
+      g.font = `${Sz * 0.2}px Lalezar`;
+      g.fillText('z', x + Sz * 0.2, y - Sz * cat.cfg.bodyH * (1.0 + 0.1 * Math.sin(t * 2 + i)));
+    }
+  }
+
+  /* ---------- ذرات ---------- */
+  parts.draw(g);
+
+  g.restore();
+
+  /* شیک صحنه */
+  if (shakeAmount > 0.3) {
+    stageEl.style.transform = `translate(${shakeX * 0.4}px, ${shakeY * 0.4}px)`;
+  } else {
+    stageEl.style.transform = '';
+  }
+
+  /* ارتعاش موبایل */
+  if (state.style === 'rock' && A.rock > 0.5 && A.pulse > 0.9 && t - lastVib > 0.25 && navigator.vibrate) {
+    try { navigator.vibrate(15 + A.rock * 30); } catch (e) {}
+    lastVib = t;
+  }
+}
+
+/* ---------- رسم VU ---------- */
+function drawVU(t) {
+  vg.setTransform(D, 0, 0, D, 0, 0);
+  const vw = vu.width / D, vh = vu.height / D;
+  vg.clearRect(0, 0, vw, vh);
+  const N = 40;
+  for (let i = 0; i < N; i++) {
+    const v = A.connected && state.playing
+      ? A.freq[Math.floor(Math.pow(i / N, 1.7) * 220) + 1] / 255
+      : 0.03;
+    const h = Math.max(3, v * vh * (0.85 + 0.15 * Math.sin(t * 5 + i)));
+    const hue = (hueCur || 40) + i * 3;
+    vg.fillStyle = `hsl(${hue} 80% ${50 + v * 15}%)`;
+    const bw = vw / N;
+    const x = i * bw + 2;
+    const y = vh - h;
+    const w = bw - 4;
+    if (vg.roundRect) {
+      vg.beginPath(); vg.roundRect(x, y, w, h, 3); vg.fill();
+    } else {
+      vg.fillRect(x, y, w, h);
+    }
+  }
+}
+
+/* ---------- ذرات جدید در ضرب ---------- */
+function spawnParticles(t) {
+  if (!state.playing || A.silence > 0.5) return;
+  if (A.pulse < 0.5) return;
+  const style = STYLES[state.style];
+  const ptype = style.effects.particles;
+  // تعداد ذرات بر اساس انرژی
+  const n = 1 + Math.floor(A.sEnergy * 3);
+  for (let k = 0; k < n; k++) {
+    // موقعیت تصادفی روی صحنه
+    const i = Math.floor(Math.random() * CATS.length);
+    const cat = CATS[i];
+    if (Math.random() < 0.3 + A.sEnergy * 0.5) {
+      parts.spawn(ptype, cat.x + rand(-0.2, 0.2) * cat.scale, cat.y - cat.scale * 0.9, hueCur || 40);
+    }
+  }
+}
+
+/* ---------- HUD ---------- */
+let hudT = 0;
+function hud(t) {
+  if (t - hudT < 0.2) return;
+  hudT = t;
+  const [m, h] = mood();
+  let gen = 'منتظر موزیک…';
+  if (state.playing) {
+    if (A.silence > 0.6) gen = 'سکوت…';
+    else if (state.style === 'rock' && A.rock > 0.6) gen = '🤘 راک سنگین — لرزش کامل';
+    else if (state.style === 'rock' && A.rock > 0.35) gen = 'گیتار برقی و انرژی';
+    else if (A.sEnergy > 0.45) gen = 'پرانرژی و شاد';
+    else if (A.sEnergy > 0.2) gen = 'ملایم و روان';
+    else gen = 'آرام';
+  }
+  $('#badge').textContent = gen;
+  $('#mm').textContent = m;
+  $('#mb').textContent = state.playing && A.hasBpm ? fa(A.bpm) : '—';
+  $('#me').textContent = fa(A.sEnergy * 100);
+  $('#ue').style.width = (A.sEnergy * 100) + '%';
+}
+
+/* ---------- حلقه ---------- */
+function tick(now) {
+  requestAnimationFrame(tick);
+  const dt = Math.min(0.05, (now - lastT) / 1000);
+  lastT = now;
+  const t = now / 1000;
+
+  /* تحلیل صدا */
+  A.update(dt, t, state.playing);
+
+  /* به‌روزرسانی گربه‌ها */
+  const style = STYLES[state.style];
+  for (const c of CATS) c.update(dt, t, A, style, state.playing);
+
+  /* پخش ذرات */
+  spawnParticles(t);
+  parts.update(dt);
+
+  /* رکوردها */
+  if (state.playing && A.silence < 0.5) {
+    const speed = 40 + A.bpm * 0.7 * (0.5 + A.sEnergy);
+    reel += dt * speed;
+  } else {
+    reel += dt * 8;
+  }
+  $('#r1').style.transform = `rotate(${reel}deg)`;
+  $('#r2').style.transform = `rotate(${reel * 0.8}deg)`;
+
+  /* رندر */
+  render(dt, t);
+  drawVU(t);
+  hud(t);
+}
 requestAnimationFrame(tick);
 
-/* ---------- پلیر ---------- */
-const list=[];let cur=-1;
-const mmss=s=>isFinite(s)?fa(Math.floor(s/60))+':'+fa(Math.floor(s%60)).padStart(2,'۰'):'۰:۰۰';
-function add(files){for(const f of files){if(!f.type.startsWith('audio')&&!/\.(mp3|wav|ogg|m4a|flac|aac)$/i.test(f.name))continue;list.push({name:f.name.replace(/\.[^.]+$/,''),url:URL.createObjectURL(f)})}
- draw();if(cur<0&&list.length)load(0,true)}
-function draw(){const ul=$('#list');ul.innerHTML='';list.forEach((s,i)=>{const li=document.createElement('li');li.className=i===cur?'cur':'';li.innerHTML='<span></span><span>'+fa(i+1)+'</span>';li.firstChild.textContent=s.name;li.onclick=()=>load(i,true);ul.appendChild(li)})}
-function load(i,go){if(!list.length)return;cur=(i+list.length)%list.length;au.src=list[cur].url;$('#title').textContent=list[cur].name;$('#sub').textContent='در حال تحلیل ریتم و حال‌وهوا…';
- ons.length=0;S.hasBpm=false;S.bpm=100;S.rock=0;S.slow=.2;draw();if(go)play()}
-async function play(){setup();if(AC.state==='suspended')await AC.resume();if(au.src)try{await au.play()}catch(e){}}
-function setIc(p){$('#ic').innerHTML=p?'<path d="M6 4h4v16H6zM14 4h4v16h-4z"/>':'<path d="M7 4v16l13-8z"/>'}
-au.onplay=()=>{playing=true;setIc(true)};au.onpause=()=>{playing=false;setIc(false)};
-au.onended=()=>{list.length>1?load(cur+1,true):0};
-au.ontimeupdate=()=>{if(!seeking)$('#seek').value=au.duration?au.currentTime/au.duration*1000:0;$('#tc').textContent=mmss(au.currentTime);$('#td').textContent=mmss(au.duration)};
-let seeking=false;const sk=$('#seek');sk.oninput=()=>{seeking=true;if(au.duration)au.currentTime=sk.value/1000*au.duration};sk.onchange=()=>seeking=false;
-$('#play').onclick=()=>au.paused?play():au.pause();
-$('#prev').onclick=()=>load(cur-1,true);$('#next').onclick=()=>load(cur+1,true);
-$('#vol').oninput=e=>au.volume=e.target.value/100;au.volume=.85;
-$('#file').onchange=e=>add(e.target.files);
-for(const el of[$('#drop'),$('#stage')]){el.ondragover=e=>{e.preventDefault();$('#drop').classList.add('on')};el.ondragleave=()=>$('#drop').classList.remove('on');
- el.ondrop=e=>{e.preventDefault();$('#drop').classList.remove('on');add(e.dataTransfer.files)}}
-</script>
-</body>
-</html>
+/* ============================================================
+   ۸. پلیر
+   ============================================================ */
+const list = [];
+let cur = -1;
+const mmss = s => isFinite(s)
+  ? fa(Math.floor(s / 60)) + ':' + fa(Math.floor(s % 60)).padStart(2, '۰')
+  : '۰:۰۰';
+
+function addFiles(files) {
+  let added = false;
+  for (const f of files) {
+    if (!f.type.startsWith('audio') &&
+        !/\.(mp3|wav|ogg|m4a|flac|aac|opus)$/i.test(f.name)) continue;
+    list.push({
+      name: f.name.replace(/\.[^.]+$/, ''),
+      url: URL.createObjectURL(f),
+    });
+    added = true;
+  }
+  if (added) {
+    drawList();
+    if (cur < 0 && list.length) {
+      // بلافاصله اولین آهنگ را لود کن و مودال سبک را باز کن
+      load(0, false);
+      openStyleModal(true);
+    }
+  }
+}
+
+function drawList() {
+  const ul = $('#list');
+  ul.innerHTML = '';
+  list.forEach((s, i) => {
+    const li = document.createElement('li');
+    li.className = i === cur ? 'cur' : '';
+    li.innerHTML = '<span></span><span>' + fa(i + 1) + '</span>';
+    li.firstChild.textContent = s.name;
+    li.onclick = () => load(i, true);
+    ul.appendChild(li);
+  });
+}
+
+function load(i, go) {
+  if (!list.length) return;
+  // آزادسازی URL قبلی برای جلوگیری از نشت حافظه
+  if (cur >= 0 && list[cur] && list[cur]._loaded) {
+    // (نگه‌داری می‌کنیم چون ممکنه کاربر برگرده)
+  }
+  cur = (i + list.length) % list.length;
+  const item = list[cur];
+  au.src = item.url;
+  item._loaded = true;
+  $('#title').textContent = item.name;
+  $('#sub').textContent = 'در حال تحلیل ریتم و حال‌وهوا…';
+  A.reset();
+  drawList();
+  if (go) play();
+}
+
+async function play() {
+  A.connect();
+  await A.resume();
+  if (au.src) {
+    try { await au.play(); } catch (e) {}
+  }
+}
+
+function setIcon(isPlaying) {
+  $('#ic').innerHTML = isPlaying
+    ? '<path d="M6 4h4v16H6zM14 4h4v16h-4z"/>'
+    : '<path d="M7 4v16l13-8z"/>';
+}
+
+au.onplay  = () => { state.playing = true;  setIcon(true);  };
+au.onpause = () => { state.playing = false; setIcon(false); };
+au.onended = () => {
+  if (list.length > 1) load(cur + 1, true);
+  else { state.playing = false; setIcon(false); }
+};
+
+/* تایم‌لاین کاغذی */
+let seeking = false;
+const trackEl = $('#track');
+const fillEl  = $('#fill');
+const pinEl   = $('#pin');
+const tcEl    = $('#tc');
+const tdEl    = $('#td');
+
+function updateTimeline() {
+  if (!seeking) {
+    const p = au.duration ? au.currentTime / au.duration : 0;
+    fillEl.style.width = (p * 100) + '%';
+    pinEl.style.right  = (p * 100) + '%';
+  }
+  tcEl.textContent = mmss(au.currentTime);
+  tdEl.textContent = mmss(au.duration);
+}
+au.ontimeupdate = updateTimeline;
+
+function seekAt(clientX) {
+  const r = trackEl.getBoundingClientRect();
+  // چون RTL هست، از راست به چپ می‌شود
+  let p = 1 - (clientX - r.left) / r.width;
+  p = clamp(p);
+  if (au.duration) au.currentTime = p * au.duration;
+  fillEl.style.width = (p * 100) + '%';
+  pinEl.style.right = (p * 100) + '%';
+}
+trackEl.addEventListener('pointerdown', e => {
+  seeking = true;
+  seekAt(e.clientX);
+  trackEl.setPointerCapture(e.pointerId);
+});
+trackEl.addEventListener('pointermove', e => { if (seeking) seekAt(e.clientX); });
+trackEl.addEventListener('pointerup',   e => { seeking = false; try { trackEl.releasePointerCapture(e.pointerId); } catch (_) {} });
+
+/* دکمه‌ها */
+$('#play').onclick  = () => au.paused ? play() : au.pause();
+$('#prev').onclick  = () => load(cur - 1, true);
+$('#next').onclick  = () => load(cur + 1, true);
+
+$('#vol').oninput = e => {
+  au.volume = e.target.value / 100;
+};
+au.volume = .85;
+$('#vol').value = 85;
+
+/* انتخاب فایل و drag&drop */
+$('#file').onchange = e => addFiles(e.target.files);
+for (const el of [$('#drop'), stageEl]) {
+  el.addEventListener('dragover', e => {
+    e.preventDefault();
+    $('#drop').classList.add('on');
+  });
+  el.addEventListener('dragleave', () => $('#drop').classList.remove('on'));
+  el.addEventListener('drop', e => {
+    e.preventDefault();
+    $('#drop').classList.remove('on');
+    if (e.dataTransfer && e.dataTransfer.files) addFiles(e.dataTransfer.files);
+  });
+}
+
+/* ============================================================
+   ۹. مودال انتخاب سبک
+   ============================================================ */
+function buildStyleGrid() {
+  const grid = $('#styleGrid');
+  grid.innerHTML = '';
+  for (const [key, s] of Object.entries(STYLES)) {
+    const card = document.createElement('div');
+    card.className = 'style-card';
+    card.innerHTML = `
+      <div class="swatch" style="background:${s.swatch}"></div>
+      ${s.icon}
+      <b>${s.name}</b>
+      <span>${s.tagline}</span>
+    `;
+    card.onclick = () => {
+      state.style = key;
+      $('#styleName').textContent = 'سبک: ' + s.name;
+      // به‌روزرسانی آنی رنگ صحنه
+      hueCur = null;
+      closeStyleModal();
+    };
+    grid.appendChild(card);
+  }
+}
+function openStyleModal(force) {
+  state.showModal = true;
+  $('#modal').classList.add('on');
+}
+function closeStyleModal() {
+  state.showModal = false;
+  $('#modal').classList.remove('on');
+  // اگر آهنگ لود شده ولی پخشی نشده، شروع کن
+  if (au.src && au.paused && list.length) play();
+}
+$('#modal').addEventListener('click', e => {
+  if (e.target.id === 'modal') closeStyleModal();
+});
+$('#styleBtn').onclick = () => openStyleModal();
+
+/* ============================================================
+   ۱۰. راه‌اندازی
+   ============================================================ */
+buildStyleGrid();
+drawList();
+
+/* به‌روزرسانی متن سنجه‌ها یک بار */
+$('#mb').textContent = '—';
+$('#me').textContent = '۰';
